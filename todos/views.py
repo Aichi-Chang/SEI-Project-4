@@ -24,7 +24,7 @@ class ListView(APIView):
         todo = TodoSerializer(data=request.data)
         if todo.is_valid():
             todo.save()
-            return Response(todo.data, status=HTTP_201_CREATED) 
+            return Response(todo.data, status=HTTP_201_CREATED)
         return Response(todo.errors, status=HTTP_422_UNPROCESSABLE_ENTITY)
 
 
