@@ -20,7 +20,7 @@ class ListView(APIView):
         return Response(serializer.data) # send the JSON to the client
 
     def post(self, request):
-        request.data['owner'] = request.user.id
+        request.data['owner'] = request.user.id # attach the owner id to the post, we get this from the authentication class, our user it attached as request.user
         todo = TodoSerializer(data=request.data)
         if todo.is_valid():
             todo.save()
@@ -35,6 +35,20 @@ class DetailView(APIView):
         serializer = TodoSerializer(todo)
 
         return Response(serializer.data)
+
+    def put(self, request, pk):
+        request.data['owner'] = request.user.id
+        todo = Todo.objects.get(pk=pk)
+        if todo.owner.id != request.user.id:
+            return Response(status=HTTP_401_UNAUTHORIZED)
+        
+        updated_todo = TodoSerializer(data=request.data)
+        
+        if updated_todo.is_valid():
+            updated_todo.save()
+            return Response(updated_todo.data)
+        return Response(status=HTTP_422_UNPROCESSABLE_ENTITY)
+        
 
 
 
