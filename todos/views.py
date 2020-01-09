@@ -46,7 +46,7 @@ class DetailView(APIView):
         if todo.owner.id != request.user.id:
             return Response(status=HTTP_401_UNAUTHORIZED)
         # remember to add the original todo here!! or it will create a new todo instead of updating it
-        updated_todo = TodoSerializer(todo, data=request.data) 
+        updated_todo = TodoSerializer(todo, data=request.data)
        
         if updated_todo.is_valid():
             updated_todo.save()
@@ -55,11 +55,13 @@ class DetailView(APIView):
 
     
     def delete(self, request, pk):
+        todos = Todo.objects.all()
         todo = Todo.objects.get(pk=pk)
         if todo.owner.id != request.user.id:
             return Response(status=HTTP_401_UNAUTHORIZED)
         todo.delete()
-        return Response(status=HTTP_200_OK)
+        serializer = TodoSerializer(todos, many=True)
+        return Response(serializer.data, status=HTTP_200_OK)
 
 
 
