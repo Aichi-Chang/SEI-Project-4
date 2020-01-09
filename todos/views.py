@@ -76,15 +76,15 @@ class TodoListView(APIView):
         return Response(serialized_todos.data) # send the JSON to the client
     
 
-    def post(self, request, pk):
+    def post(self, request):
         request.data['owner'] = request.user.id
-        request.data['project'] = pk
+        # request.data['project'] = pk
         todo = TodoSerializer(data=request.data)
         if todo.is_valid():
             todo.save()
-            project = Project.objects.get(pk=pk)
-            serialized_project = PopulatedProjectSerializer(project)
-            return Response(serialized_project, status=HTTP_201_CREATED)
+            # project = Project.objects.get(pk=pk)
+            # serialized_project = PopulatedProjectSerializer(project)
+            return Response(todo.data, status=HTTP_201_CREATED)
         return Response(todo.errors, status=HTTP_416_REQUESTED_RANGE_NOT_SATISFIABLE)
 
 

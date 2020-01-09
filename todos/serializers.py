@@ -20,6 +20,11 @@ class TagSerializer(serializers.ModelSerializer):
         fields = ('id', 'name')
 
 
+# class PopulatedTagSerializer(TodoSerializer):
+
+#     owner = UserSerializer()
+
+
 class TodoSerializer(serializers.ModelSerializer):
 
     # created_at = serializers.DateTimeField(format='%Y-%m-%d %H:%M')
@@ -28,12 +33,6 @@ class TodoSerializer(serializers.ModelSerializer):
         model = Todo
         fields = ('id', 'heading', 'content', 'completed', 'owner', 'tags', 'created_at')
         extra_kwargs = {'tags': {'required': False}}
-
-
-
-# class PopulatedTagSerializer(TodoSerializer):
-
-#     owner = UserSerializer()
 
 
 class PopulatedTodoSerializer(TodoSerializer):
@@ -54,3 +53,6 @@ class PopulatedProjectSerializer(ProjectSerializer): # We use this on comment po
 
     owner = UserSerializer() # use the owner serializer on the owner field of comments
     todos = TodoSerializer(many=True)
+
+
+
