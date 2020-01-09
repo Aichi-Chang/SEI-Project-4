@@ -3,15 +3,69 @@ from rest_framework.response import Response # get the Response class from DRF
 from rest_framework.permissions import IsAuthenticatedOrReadOnly # our IsAuthenticated permission import, there are a few different options here
 from rest_framework.status import HTTP_200_OK, HTTP_201_CREATED, HTTP_416_REQUESTED_RANGE_NOT_SATISFIABLE, HTTP_422_UNPROCESSABLE_ENTITY, HTTP_204_NO_CONTENT, HTTP_401_UNAUTHORIZED
 
-from .models import Todo, Tag
-from .serializers import PopulatedTodoSerializer, TodoSerializer, TagSerializer
+from .models import Todo, Tag, Project
+from .serializers import PopulatedTodoSerializer, TodoSerializer, TagSerializer, ProjectSerializer, PopulatedProjectSerializer
 
 
 
 
 # Create your views here.
 
-class ListView(APIView):
+class ProjectListView(APIView): # Our comments view methods, I won't be making a get request to all comments, but will have a POST request method, the url for tbhis route will be thje same as comments from our express app. 'posts/:id/comments'. Although this isnt strictly neccesary and we could of not done it, I think this URL pattern looks familiar and explains what we are trying to effect.
+
+    permission_classes = (IsAuthenticatedOrReadOnly, )
+
+    def get(self, _request):
+        projects = Project.objects.all()
+        serialized_projects = PopulatedProjectSerializer(projects, many=True)
+
+        return Response(serialized_projects.data)
+
+    def post(self, request):
+        request.data['owner'] = request.user.id # attach the owner id to the post, we get this from the authentication class, our user it attached as request.user
+        project = ProjectSerializer(data=request.data)
+        if project.is_valid():
+            project.save()
+            return Response(project.data, status=HTTP_201_CREATED)
+        return Response(project.errors, status=HTTP_416_REQUESTED_RANGE_NOT_SATISFIABLE)
+
+
+class ProjectDetailView(APIView):
+
+    permission_classes = (IsAuthenticatedOrReadOnly, )
+
+    def get(self, _request, pk):
+        project = Project.objects.get(pk=pk) # get a book by id (pk means primary key)
+        serialized_projects = PopulatedProjectSerializer(project)
+        return Response(serialized_projects.data)
+
+    def put(self, request, pk):
+        # why we attach the user as owner again in edit? shoundt it be added already when create the todo?
+        request.data['owner'] = request.user.id
+        project = Project.objects.get(pk=pk)
+        if project.owner.id != request.user.id:
+            return Response(status=HTTP_401_UNAUTHORIZED)
+        # remember to add the original todo here!! or it will create a new todo instead of updating it
+        updated_project = ProjectSerializer(project, data=request.data)
+       
+        if updated_project.is_valid():
+            updated_project.save()
+            return Response(updated_project.data)
+        return Response(status=HTTP_416_REQUESTED_RANGE_NOT_SATISFIABLE)
+
+    
+    def delete(self, request, pk):
+        projects = Project.objects.all()
+        project = Project.objects.get(pk=pk)
+        if project.owner.id != request.user.id:
+            return Response(status=HTTP_401_UNAUTHORIZED)
+        project.delete()
+        serialized_projects = PopulatedProjectSerializer(projects, many=True)
+        return Response(serialized_projects.data, status=HTTP_200_OK)
+
+
+
+class TodoListView(APIView):
 
     permission_classes = (IsAuthenticatedOrReadOnly, )
 
@@ -22,16 +76,19 @@ class ListView(APIView):
         return Response(serialized_todos.data) # send the JSON to the client
     
 
-    def post(self, request):
-        request.data['owner'] = request.user.id # attach the owner id to the post, we get this from the authentication class, our user it attached as request.user
+    def post(self, request, pk):
+        request.data['owner'] = request.user.id
+        request.data['project'] = pk
         todo = TodoSerializer(data=request.data)
         if todo.is_valid():
             todo.save()
-            return Response(todo.data, status=HTTP_201_CREATED)
+            project = Project.objects.get(pk=pk)
+            serialized_project = PopulatedProjectSerializer(project)
+            return Response(serialized_project, status=HTTP_201_CREATED)
         return Response(todo.errors, status=HTTP_416_REQUESTED_RANGE_NOT_SATISFIABLE)
 
 
-class DetailView(APIView):
+class TodoDetailView(APIView):
 
     permission_classes = (IsAuthenticatedOrReadOnly, )
 
@@ -43,6 +100,7 @@ class DetailView(APIView):
     def put(self, request, pk):
         # why we attach the user as owner again in edit? shoundt it be added already when create the todo?
         request.data['owner'] = request.user.id
+        request.data['project'] = pk
         todo = Todo.objects.get(pk=pk)
         if todo.owner.id != request.user.id:
             return Response(status=HTTP_401_UNAUTHORIZED)
@@ -55,7 +113,7 @@ class DetailView(APIView):
         return Response(status=HTTP_416_REQUESTED_RANGE_NOT_SATISFIABLE)
 
     
-    def delete(self, request, pk):
+    def delete(self, request, pk, **Kwargs):
         todos = Todo.objects.all()
         todo = Todo.objects.get(pk=pk)
         if todo.owner.id != request.user.id:

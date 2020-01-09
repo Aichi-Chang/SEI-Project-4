@@ -20,6 +20,20 @@ class Tag(models.Model):
 #         abstract = True
         
 
+class Project(models.Model):
+    title = models.CharField(max_length=50)
+    note = models.TextField()
+    owner = models.ForeignKey(
+        User,
+        related_name='projects',
+        on_delete=models.CASCADE
+    )
+    created_at = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.title}: {self.note}, {self.owner}'
+
+
 
 class Todo(models.Model):
     heading = models.CharField(max_length=50)
@@ -35,8 +49,18 @@ class Todo(models.Model):
         related_name='todos',
         blank=True
     )
+    project = models.ForeignKey(
+        Project,
+        related_name='todos',
+        on_delete=models.CASCADE,
+        blank=True,
+        null=True
+    )
     created_at = models.DateField(auto_now_add=True)
 
 
     def __str__(self):
         return f'{self.heading}: {self.content}, {self.owner}'
+
+
+
