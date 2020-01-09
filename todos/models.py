@@ -11,6 +11,16 @@ class Tag(models.Model):
     def __str__(self):
         return f'{self.name}'
 
+
+# class TimeStampMixin(models.Model):
+#     created_at = models.DateTimeField(auto_now_add=True)
+#     updated_at = models.DateTimeField(auto_now=True)
+
+#     class Meta:
+#         abstract = True
+        
+
+
 class Todo(models.Model):
     heading = models.CharField(max_length=50)
     content = models.TextField()
@@ -25,6 +35,8 @@ class Todo(models.Model):
         related_name='todos',
         blank=True
     )
+    created_at = models.DateField(auto_now_add=True)
+
 
     def __str__(self):
         return f'{self.heading}: {self.content}, {self.owner}'

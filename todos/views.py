@@ -4,7 +4,7 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly # our IsAuthent
 from rest_framework.status import HTTP_200_OK, HTTP_201_CREATED, HTTP_416_REQUESTED_RANGE_NOT_SATISFIABLE, HTTP_422_UNPROCESSABLE_ENTITY, HTTP_204_NO_CONTENT, HTTP_401_UNAUTHORIZED
 
 from .models import Todo, Tag
-from .serializers import PopulatedTodoSerializer, TodoSerializer
+from .serializers import PopulatedTodoSerializer, TodoSerializer, TagSerializer
 
 
 
@@ -17,9 +17,10 @@ class ListView(APIView):
 
     def get(self, _request):
         todos = Todo.objects.all() # get all the todos
-        serializer = TodoSerializer(todos, many=True)
+        serialized_todos = PopulatedTodoSerializer(todos, many=True)
 
-        return Response(serializer.data) # send the JSON to the client
+        return Response(serialized_todos.data) # send the JSON to the client
+    
 
     def post(self, request):
         request.data['owner'] = request.user.id # attach the owner id to the post, we get this from the authentication class, our user it attached as request.user
@@ -36,8 +37,8 @@ class DetailView(APIView):
 
     def get(self, _request, pk):
         todo = Todo.objects.get(pk=pk) # get a book by id (pk means primary key)
-        serializer = TodoSerializer(todo)
-        return Response(serializer.data)
+        serialized_todos = PopulatedTodoSerializer(todo)
+        return Response(serialized_todos.data)
 
     def put(self, request, pk):
         # why we attach the user as owner again in edit? shoundt it be added already when create the todo?
@@ -60,8 +61,38 @@ class DetailView(APIView):
         if todo.owner.id != request.user.id:
             return Response(status=HTTP_401_UNAUTHORIZED)
         todo.delete()
-        serializer = TodoSerializer(todos, many=True)
-        return Response(serializer.data, status=HTTP_200_OK)
+        serialized_todos = PopulatedTodoSerializer(todos, many=True)
+        return Response(serialized_todos.data, status=HTTP_200_OK)
 
 
+# for tags drop down menu
+class TagListView(APIView):
+    permission_classes = (IsAuthenticatedOrReadOnly, )
 
+    def get(self, _request): # as stated just a GET (index) for this view
+        tags = Tag.objects.all() # get  all the categories
+        serialized_tags = TagSerializer(tags, many=True) # serialize them
+        return Response(serialized_tags.data) # send them back to the client
+
+#     def post(self, request, pk):
+#         request.data['owner'] = request.user.id
+#         request.data['todo'] = pk
+#         tag = TagSerializer(data=request.data)
+#         if tag.is_valid():
+#             tag.save()
+#             todo = Todo.objects.get(pk=pk)
+#             serialized_todo = PopulatedTodoSerializer(todo)
+#             return Response(serialized_todo, status=HTTP_201_CREATED)
+#         return Response(tag.errors, status=HTTP_416_REQUESTED_RANGE_NOT_SATISFIABLE)
+
+# class TagDetailView(APIView):
+
+#     permission_classes = (IsAuthenticatedOrReadOnly, )
+
+#     # The URL for this view is to 'api/posts/post_id/tags/tag_id', the comment id is passed as a named argument
+#     def delete(self, request, tag_pk, **kwargs): # we can ignore the comment and post id here,
+#         tag = Tag.objects.get(pk=tag_pk) # find the comment by its id
+#         if tag.owner.id != request.user.id: # check if the request came from the comment owner
+#             return Response(status=HTTP_401_UNAUTHORIZED) # if not the comment owner send back unauthorized
+#         tag.delete() # delete it
+#         return Response(status=HTTP_204_NO_CONTENT)
