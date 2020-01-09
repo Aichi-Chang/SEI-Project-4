@@ -23,10 +23,13 @@ class TodoSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Todo
-        fields = ('id', 'heading', 'content', 'completed')
+        fields = ('id', 'heading', 'content', 'completed', 'owner', 'tags')
+        extra_kwargs = {'tags': {'required': False}}
 
 
 class PopulatedTodoSerializer(TodoSerializer):
 
     owner = UserSerializer()
     tags = TagSerializer(many=True)
+
+

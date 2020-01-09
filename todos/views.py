@@ -13,6 +13,8 @@ from .serializers import PopulatedTodoSerializer, TodoSerializer
 
 class ListView(APIView):
 
+    permission_classes = (IsAuthenticatedOrReadOnly, )
+
     def get(self, _request):
         todos = Todo.objects.all() # get all the todos
         serializer = TodoSerializer(todos, many=True)
@@ -30,6 +32,8 @@ class ListView(APIView):
 
 class DetailView(APIView):
 
+    permission_classes = (IsAuthenticatedOrReadOnly, )
+
     def get(self, _request, pk):
         todo = Todo.objects.get(pk=pk) # get a book by id (pk means primary key)
         serializer = TodoSerializer(todo)
@@ -41,8 +45,8 @@ class DetailView(APIView):
         todo = Todo.objects.get(pk=pk)
         if todo.owner.id != request.user.id:
             return Response(status=HTTP_401_UNAUTHORIZED)
-       
-        updated_todo = TodoSerializer(data=request.data)
+        # remember to add the original todo here!! or it will create a new todo instead of updating it
+        updated_todo = TodoSerializer(todo, data=request.data) 
        
         if updated_todo.is_valid():
             updated_todo.save()
