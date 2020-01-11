@@ -1,12 +1,13 @@
 from rest_framework.views import APIView # get the APIView class from DRF
 from rest_framework.response import Response # get the Response class from DRF
-from rest_framework.permissions import IsAuthenticatedOrReadOnly # our IsAuthenticated permission import, there are a few different options here
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated # our IsAuthenticated permission import, there are a few different options here
 from rest_framework.status import HTTP_200_OK, HTTP_201_CREATED, HTTP_416_REQUESTED_RANGE_NOT_SATISFIABLE, HTTP_422_UNPROCESSABLE_ENTITY, HTTP_204_NO_CONTENT, HTTP_401_UNAUTHORIZED
+from rest_framework import permissions
+from django_filters.rest_framework import DjangoFilterBackend
 
 from .models import Todo, Tag, Project
-from .serializers import PopulatedTodoSerializer, TodoSerializer, TagSerializer, ProjectSerializer, PopulatedProjectSerializer
-
-
+from .serializers import PopulatedTodoSerializer, TodoSerializer, TagSerializer, ProjectSerializer, PopulatedProjectSerializer, UserSerializer
+# from .permissions import IsAuthenticatedOwner
 
 
 # Create your views here.
@@ -15,8 +16,8 @@ class ProjectListView(APIView): # Our comments view methods, I won't be making a
 
     permission_classes = (IsAuthenticatedOrReadOnly, )
 
-    def get(self, _request):
-        projects = Project.objects.all()
+    def get(self, request):
+        projects = Project.objects.filter(owner=request.user)
         serialized_projects = PopulatedProjectSerializer(projects, many=True)
 
         return Response(serialized_projects.data)
@@ -34,8 +35,8 @@ class ProjectDetailView(APIView):
 
     permission_classes = (IsAuthenticatedOrReadOnly, )
 
-    def get(self, _request, pk):
-        project = Project.objects.get(pk=pk) # get a book by id (pk means primary key)
+    def get(self, request, pk):
+        project = Project.objects.filter(owner=request.user).get(pk=pk)
         serialized_projects = PopulatedProjectSerializer(project)
         return Response(serialized_projects.data)
 
@@ -55,7 +56,7 @@ class ProjectDetailView(APIView):
 
     
     def delete(self, request, pk):
-        projects = Project.objects.all()
+        projects = Project.objects.filter(owner=request.user)
         project = Project.objects.get(pk=pk)
         if project.owner.id != request.user.id:
             return Response(status=HTTP_401_UNAUTHORIZED)
@@ -64,17 +65,16 @@ class ProjectDetailView(APIView):
         return Response(serialized_projects.data, status=HTTP_200_OK)
 
 
-
 class TodoListView(APIView):
 
     permission_classes = (IsAuthenticatedOrReadOnly, )
 
-    def get(self, _request):
-        todos = Todo.objects.all() # get all the todos
+    def get(self, request):
+        # todos = Todo.objects.all()
+        todos = Todo.objects.filter(owner=request.user)
         serialized_todos = PopulatedTodoSerializer(todos, many=True)
+        return Response(serialized_todos.data)
 
-        return Response(serialized_todos.data) # send the JSON to the client
-    
 
     def post(self, request):
         request.data['owner'] = request.user.id
@@ -82,8 +82,8 @@ class TodoListView(APIView):
         todo = TodoSerializer(data=request.data)
         if todo.is_valid():
             todo.save()
-            # project = Project.objects.get(pk=pk)
-            # serialized_project = PopulatedProjectSerializer(project)
+            # project = todo.instance.project
+            # todo = PopulatedTodoSerializer(project)
             return Response(todo.data, status=HTTP_201_CREATED)
         return Response(todo.errors, status=HTTP_416_REQUESTED_RANGE_NOT_SATISFIABLE)
 
@@ -92,15 +92,18 @@ class TodoDetailView(APIView):
 
     permission_classes = (IsAuthenticatedOrReadOnly, )
 
-    def get(self, _request, pk):
-        todo = Todo.objects.get(pk=pk) # get a book by id (pk means primary key)
+    def get(self, request, pk):
+        todo = Todo.objects.filter(owner=request.user).get(pk=pk)
+        # this doesn't work, only returns "Todo matching query does not exist."
+        # if todo.owner.id != request.user.id:
+        #     return Response(status=HTTP_401_UNAUTHORIZED) 
         serialized_todos = PopulatedTodoSerializer(todo)
         return Response(serialized_todos.data)
 
     def put(self, request, pk):
         # why we attach the user as owner again in edit? shoundt it be added already when create the todo?
         request.data['owner'] = request.user.id
-        request.data['project'] = pk
+        # request.data['project'] = pk
         todo = Todo.objects.get(pk=pk)
         if todo.owner.id != request.user.id:
             return Response(status=HTTP_401_UNAUTHORIZED)
@@ -114,7 +117,7 @@ class TodoDetailView(APIView):
 
     
     def delete(self, request, pk, **Kwargs):
-        todos = Todo.objects.all()
+        todos = Todo.objects.filter(owner=request.user)
         todo = Todo.objects.get(pk=pk)
         if todo.owner.id != request.user.id:
             return Response(status=HTTP_401_UNAUTHORIZED)
@@ -154,3 +157,5 @@ class TagListView(APIView):
 #             return Response(status=HTTP_401_UNAUTHORIZED) # if not the comment owner send back unauthorized
 #         tag.delete() # delete it
 #         return Response(status=HTTP_204_NO_CONTENT)
+
+
