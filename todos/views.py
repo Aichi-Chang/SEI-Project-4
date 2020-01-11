@@ -2,7 +2,7 @@ from rest_framework.views import APIView # get the APIView class from DRF
 from rest_framework.response import Response # get the Response class from DRF
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated # our IsAuthenticated permission import, there are a few different options here
 from rest_framework.status import HTTP_200_OK, HTTP_201_CREATED, HTTP_416_REQUESTED_RANGE_NOT_SATISFIABLE, HTTP_422_UNPROCESSABLE_ENTITY, HTTP_204_NO_CONTENT, HTTP_401_UNAUTHORIZED
-from rest_framework import permissions
+from rest_framework import viewsets, filters
 from django_filters.rest_framework import DjangoFilterBackend
 from django.contrib.auth import get_user_model
 
@@ -73,9 +73,11 @@ class TodoListView(APIView):
 
     permission_classes = (IsAuthenticatedOrReadOnly, )
 
+
     def get(self, request):
         # todos = Todo.objects.all()
         todos = Todo.objects.filter(owner=request.user)
+        # tags = todos.filter(tags__name=request.query_params.get('tags', None))
         serialized_todos = PopulatedTodoSerializer(todos, many=True)
         return Response(serialized_todos.data)
 
@@ -132,12 +134,13 @@ class TodoDetailView(APIView):
 
 # for tags drop down menu
 class TagListView(APIView):
-    permission_classes = (IsAuthenticatedOrReadOnly, )
+    permission_classes = (IsAuthenticated, )
 
     def get(self, _request): # as stated just a GET (index) for this view
         tags = Tag.objects.all() # get  all the categories
         serialized_tags = TagSerializer(tags, many=True) # serialize them
         return Response(serialized_tags.data) # send them back to the client
+
 
 #     def post(self, request, pk):
 #         request.data['owner'] = request.user.id
@@ -150,6 +153,7 @@ class TagListView(APIView):
 #             return Response(serialized_todo, status=HTTP_201_CREATED)
 #         return Response(tag.errors, status=HTTP_416_REQUESTED_RANGE_NOT_SATISFIABLE)
 
+
 # class TagDetailView(APIView):
 
 #     permission_classes = (IsAuthenticatedOrReadOnly, )
@@ -161,6 +165,8 @@ class TagListView(APIView):
 #             return Response(status=HTTP_401_UNAUTHORIZED) # if not the comment owner send back unauthorized
 #         tag.delete() # delete it
 #         return Response(status=HTTP_204_NO_CONTENT)
+
+
 
 class UserDetailView(APIView):
 

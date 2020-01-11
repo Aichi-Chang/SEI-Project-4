@@ -41,10 +41,4 @@ class LoginView(APIView):
         token = jwt.encode({'sub': user.id}, settings.SECRET_KEY, algorithm='HS256')
         return Response({'token': token, 'userId': user.id, 'userEmail': user.email, 'message': f'Great to see you again, {user.username}!'})
 
-# class UserView(APIView):
 
-#     def get_user(self, request, pk):
-#         try:
-#             return User.objects.get(pk=pk)
-#         except User.DoesNotExist:
-#             raise PermissionDenied({'message': 'Invalid credentials'})
