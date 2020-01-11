@@ -6,11 +6,11 @@ User = get_user_model()
 
 
 
-class UserSerializer(serializers.ModelSerializer):
+class OwnerSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('id', 'username', 'todos')
+        fields = ('id', 'username', 'todos', 'projects')
 
 
 class TagSerializer(serializers.ModelSerializer):
@@ -37,7 +37,7 @@ class TodoSerializer(serializers.ModelSerializer):
 
 class PopulatedTodoSerializer(TodoSerializer):
 
-    owner = UserSerializer()
+    owner = OwnerSerializer()
     tags = TagSerializer(many=True)
 
 
@@ -51,8 +51,12 @@ class ProjectSerializer(serializers.ModelSerializer): # This comment serializer 
 
 class PopulatedProjectSerializer(ProjectSerializer): # We use this on comment population to show the owner as a seraoilized nested field. note how this is inherting directly from the comment serializer above, and there for has all its meta class and feilds infromation automatically added
 
-    owner = UserSerializer() # use the owner serializer on the owner field of comments
+    owner = OwnerSerializer() # use the owner serializer on the owner field of comments
     todos = TodoSerializer(many=True)
 
 
 
+class PopulatedOwnerSerializer(OwnerSerializer):
+
+    todos = TodoSerializer(many=True)
+    projects = ProjectSerializer(many=True)

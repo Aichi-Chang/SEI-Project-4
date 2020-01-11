@@ -4,10 +4,14 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticate
 from rest_framework.status import HTTP_200_OK, HTTP_201_CREATED, HTTP_416_REQUESTED_RANGE_NOT_SATISFIABLE, HTTP_422_UNPROCESSABLE_ENTITY, HTTP_204_NO_CONTENT, HTTP_401_UNAUTHORIZED
 from rest_framework import permissions
 from django_filters.rest_framework import DjangoFilterBackend
+from django.contrib.auth import get_user_model
 
 from .models import Todo, Tag, Project
-from .serializers import PopulatedTodoSerializer, TodoSerializer, TagSerializer, ProjectSerializer, PopulatedProjectSerializer, UserSerializer
-# from .permissions import IsAuthenticatedOwner
+from .serializers import PopulatedTodoSerializer, TodoSerializer, TagSerializer, ProjectSerializer, PopulatedProjectSerializer, OwnerSerializer, PopulatedOwnerSerializer
+
+User = get_user_model()
+
+
 
 
 # Create your views here.
@@ -96,7 +100,7 @@ class TodoDetailView(APIView):
         todo = Todo.objects.filter(owner=request.user).get(pk=pk)
         # this doesn't work, only returns "Todo matching query does not exist."
         # if todo.owner.id != request.user.id:
-        #     return Response(status=HTTP_401_UNAUTHORIZED) 
+        #     return Response(status=HTTP_401_UNAUTHORIZED)
         serialized_todos = PopulatedTodoSerializer(todo)
         return Response(serialized_todos.data)
 
@@ -158,4 +162,13 @@ class TagListView(APIView):
 #         tag.delete() # delete it
 #         return Response(status=HTTP_204_NO_CONTENT)
 
+class UserDetailView(APIView):
 
+    permission_classes = (IsAuthenticated, )
+
+    def get(self, _request, pk):
+        # what is the difference between pk and hyperlink???
+        owner = User.objects.filter(id=pk)
+        serializer = PopulatedOwnerSerializer(owner, many=True)
+
+        return Response(serializer.data)
