@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django_filters',
     'corsheaders',
     'jwt_auth',
+    'frontend',
     'todos'
 ]
 
