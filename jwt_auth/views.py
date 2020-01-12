@@ -39,6 +39,6 @@ class LoginView(APIView):
             raise PermissionDenied({'message': 'Invalid credentials'})
 
         token = jwt.encode({'sub': user.id}, settings.SECRET_KEY, algorithm='HS256')
-        return Response({'token': token, 'userId': user.id, 'userEmail': user.email, 'message': f'Great to see you again, {user.username}!'})
+        return Response({'token': token, 'userId': user.id, 'userEmail': user.email, 'message': f'Great to see you again, {user.first_name}!'})
 
 
