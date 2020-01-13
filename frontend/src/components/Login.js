@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-// import Auth from '../../lib/auth'
+import Auth from '../lib/Auth'
 
 
 
@@ -21,26 +21,22 @@ const Login = (props) => {
     setErrors(err => ({ ...err, [e.target.name]: '' }))
   }
 
-  // function handleSubmit(e) {
-  //   // e.persist()
-  //   e.preventDefault()
-  //   axios.post('/api/login/', data)
-  //     .then(res => {
-  //       Auth.setToken(res.data.token)
-  //       Auth.setUser(res.data.user)
-  //       // console.log(res.data.user)
-  //       // console.log(Auth.getUser())
-  //       props.history.push('/')
-  //     })
-  //     .catch(err => setErrors({ ...errors, errors: err.data }))
-  // }
+  function handleSubmit(e) {
+    e.preventDefault()
+    axios.post('/api/login/', data)
+      .then(res => {
+        Auth.setToken(res.data.token)
+        Auth.setUser(res.data.user)
+        props.history.push('/')
+      })
+      .catch(err => setErrors({ ...errors, errors: err.data }))
+  }
 
   
 
 
   return <div className="flex flex-column items-center justify-center vh-100">
-    {/* <form onSubmit={(e) => handleSubmit(e)}> */}
-    <form>
+    <form onSubmit={(e) => handleSubmit(e)}>
       <div className="pa2 mt4">
         <input
           onChange={(e) => handleChange(e)}

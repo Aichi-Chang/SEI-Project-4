@@ -17,5 +17,34 @@ input {
   padding: 14px 0 14px 18px;
 }
 
+.folder1 {
+  padding: 10px 64px 10px 11px;
+  color: #EBEBEB;
+  background: #267DFF;
+  border-radius: 20px;
+}
 
+.folder2 {
+  padding: 10px 64px 10px 11px;
+  color: #EBEBEB;
+  background: #FF3C3C;
+  border-radius: 20px;
+}
 
+.folder3 {
+  padding: 10px 64px 10px 11px;
+  color: #EBEBEB;
+  background: #B0B0B0;
+  border-radius: 20px;
+}
+
+.folder4 {
+  padding: 8px 64px 8px 11px;
+  color: #EBEBEB;
+  background: #602E00;
+  border-radius: 20px;
+}
+
+/* .tags:hover {
+
+} */

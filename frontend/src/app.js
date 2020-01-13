@@ -5,10 +5,13 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import './css/main.css'
 import 'tachyons'
 
+
+import Tags from './components/Tags'
 import Login from './components/Login'
 import Register from './components/Register'
 import Home from './components/Home'
 import Header from './components/Header'
+
 
 
 
@@ -18,6 +21,7 @@ const App = () => {
   return <BrowserRouter>
 
     <Header />
+    <Tags />
 
     <Switch>
       <Route exact path = '/' component={Home} />
