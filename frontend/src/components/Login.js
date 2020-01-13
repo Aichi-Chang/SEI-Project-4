@@ -24,7 +24,7 @@ const Login = (props) => {
   // function handleSubmit(e) {
   //   // e.persist()
   //   e.preventDefault()
-  //   axios.post('/api/login', data)
+  //   axios.post('/api/login/', data)
   //     .then(res => {
   //       Auth.setToken(res.data.token)
   //       Auth.setUser(res.data.user)
@@ -41,7 +41,7 @@ const Login = (props) => {
   return <div className="flex flex-column items-center justify-center vh-100">
     {/* <form onSubmit={(e) => handleSubmit(e)}> */}
     <form>
-      <div className="pa2">
+      <div className="pa2 mt4">
         <input
           onChange={(e) => handleChange(e)}
           type="email"
@@ -67,13 +67,13 @@ const Login = (props) => {
       </div>
 
       <div className="pa2 tc">
-        <button className="pointer mt3 pa2 nearblack grow br4 ph5">
+        <button className="pointer mt4 pa2 nearblack grow br4 ph5 f6">
           Login
         </button>
       </div>
       
-      <div className="f6 tc">
-        <p>Not a member? <a href={'/register'} className='gray dim:hover underline'>Join</a></p>
+      <div className="moon-gray f6 tc">
+        <p>Not a member? <a href={'/register'} className='moon-gray dim:hover underline .tracked'>Join</a></p>
       </div>
     </form>
   </div>

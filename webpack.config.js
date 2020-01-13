@@ -30,7 +30,8 @@ module.exports = {
     proxy: {
       '/api': {
         target: 'http://localhost:4000',
-        secure: false
+        secure: false,
+        changeOrigin: true
       }
     }
   },

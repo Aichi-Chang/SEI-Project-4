@@ -30,7 +30,7 @@ const Register = (props) => {
   function handleSubmit(e) {
     // e.persist()
     e.preventDefault()
-    axios.post('/api/register', data)
+    axios.post('/api/register/', data)
       .then(res => {
         console.log(res.data)
         if (errors.errors === '')
@@ -44,7 +44,7 @@ const Register = (props) => {
 
   return <div className="flex flex-column items-center justify-center vh-100">
     <form onSubmit={(e) => handleSubmit(e)}>
-      <div className="pa2  mt6">
+      <div className="pa2 mt4">
         <input
           onChange={(e) => handleChange(e)}
           type="email"
@@ -53,10 +53,6 @@ const Register = (props) => {
           className="input pa2"
           placeholder="Email"
         />
-        {/* this is not working... */}
-        {/* {errors.email && <small className="red">
-          {errors.email}
-        </small>} */}
       </div>
 
       <div className="pa2 ">
@@ -64,20 +60,9 @@ const Register = (props) => {
           onChange={(e) => handleChange(e)}
           type="text"
           required={true}
-          name="first_name"
+          name="username"
           className="input pa2"
-          placeholder="First Name"
-        />
-      </div>
-
-      <div className="pa2 ">
-        <input
-          onChange={(e) => handleChange(e)}
-          type="text"
-          required={true}
-          name="last_name"
-          className="input pa2"
-          placeholder="Last Name"
+          placeholder="User Name"
         />
       </div>
 
@@ -90,6 +75,10 @@ const Register = (props) => {
           className="input pa2"
           placeholder="Password"
         />
+        {/* this is not working... */}
+        {errors.password && <small className="red">
+          {errors.password}
+        </small>}
       </div>
 
       <div className="pa2 ">
@@ -97,20 +86,20 @@ const Register = (props) => {
           onChange={(e) => handleChange(e)}
           type="password"
           required={true}
-          name="passwordConfirmation"
+          name="password_confirmation"
           className="input pa2 w-100"
           placeholder="Confirm Password"
         />
       </div>
 
       <div className="pa2 tc">
-        <button className="pointer mt3 pa2 nearblack grow br4 ph5">
+        <button className="pointer mt4 pa2 nearblack grow br4 ph5 f6">
           Join
         </button>
       </div>
       
-      <div className="f6 tc">
-        <p>Already a member? <a href={'/login'} className='gray dim:hover underline'>Login</a></p>
+      <div className="moon-gray f6 tc">
+        <p>Already a member? <a href={'/login'} className='moon-gray dim:hover underline .tracked'>Login</a></p>
       </div>
     </form>
   </div>
