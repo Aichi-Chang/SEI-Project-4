@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+// import { useDrag } from 'react-dnd'
 
 import Auth from '../lib/Auth'
 import AddProject from './svgs/AddProject'
-// import Header from './Header'
 
 
 
@@ -20,8 +20,34 @@ const Home = () => {
     })
       .then(res => setData(res.data))
   }, [])
-  
-  if (!data) return null  
+
+  // function onDragStart(id) {
+  //   setData({
+  //     activeId: id
+  //   })
+  // }
+
+  // function dragTo(tags) {
+  //   // let { tags,  activeId} = this.state;
+  //   setData({ tags: tags[data.activeId] })
+  //   if (data.tags.status !== data.status) {
+  //     data.task.status = data.status
+  //     setData({
+  //       tags: tags
+  //     })
+  //   }
+  //   cancelSelect()
+  // }
+
+  // function cancelSelect() {
+  //   setData({
+  //     activeId: null
+  //   })
+  // }
+
+
+  if (!data) return null 
+  console.log(data) 
   
   return <div className='flex items-center justify-center '>
 

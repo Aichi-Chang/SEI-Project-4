@@ -27,7 +27,7 @@ const Login = (props) => {
       .then(res => {
         Auth.setToken(res.data.token)
         Auth.setUser(res.data.user)
-        props.history.push('/home')
+        props.history.push('/inbox')
       })
       .catch(err => setErrors({ ...errors, errors: err.data }))
   }
