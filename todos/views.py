@@ -16,7 +16,9 @@ User = get_user_model()
 
 # Create your views here.
 
-class ProjectListView(APIView): # Our comments view methods, I won't be making a get request to all comments, but will have a POST request method, the url for tbhis route will be thje same as comments from our express app. 'posts/:id/comments'. Although this isnt strictly neccesary and we could of not done it, I think this URL pattern looks familiar and explains what we are trying to effect.
+
+
+class ProjectListView(APIView): 
 
     permission_classes = (IsAuthenticatedOrReadOnly, )
 
@@ -39,8 +41,9 @@ class ProjectDetailView(APIView):
 
     permission_classes = (IsAuthenticatedOrReadOnly, )
 
-    def get(self, request, pk):
-        project = Project.objects.filter(owner=request.user).get(pk=pk)
+    def get(self, _request, pk):
+        project = Project.objects.get(pk=pk)
+        
         serialized_projects = PopulatedProjectSerializer(project)
         return Response(serialized_projects.data)
 
@@ -60,7 +63,7 @@ class ProjectDetailView(APIView):
 
     
     def delete(self, request, pk):
-        projects = Project.objects.filter(owner=request.user)
+        projects = Project.objects.filter(owner=request.user.id)
         project = Project.objects.get(pk=pk)
         if project.owner.id != request.user.id:
             return Response(status=HTTP_401_UNAUTHORIZED)
@@ -73,13 +76,20 @@ class TodoListView(APIView):
 
     permission_classes = (IsAuthenticatedOrReadOnly, )
 
-
-    def get(self, request):
-        # todos = Todo.objects.all()
-        todos = Todo.objects.filter(owner=request.user)
-        # tags = todos.filter(tags__name=request.query_params.get('tags', None))
-        serialized_todos = PopulatedTodoSerializer(todos, many=True)
+    def get(self, _request):
+        serialized_todos = PopulatedTodoSerializer(self.get_queryset(), many=True)
         return Response(serialized_todos.data)
+
+    def get_queryset(self):
+        user = self.request.user
+        return Todo.objects.filter(owner=user.id)
+
+    # def get(self, request):
+    #     todos = Todo.objects.all()
+    #     # todos = Todo.objects.filter(owner=request.user.id)
+    #     # tags = todos.filter(tags__name=request.query_params.get('tags', None))
+    #     serialized_todos = PopulatedTodoSerializer(todos, many=True)
+    #     return Response(serialized_todos.data)
 
 
     def post(self, request):
@@ -99,7 +109,7 @@ class TodoDetailView(APIView):
     permission_classes = (IsAuthenticatedOrReadOnly, )
 
     def get(self, request, pk):
-        todo = Todo.objects.filter(owner=request.user).get(pk=pk)
+        todo = Todo.objects.get(pk=pk)
         # this doesn't work, only returns "Todo matching query does not exist."
         # if todo.owner.id != request.user.id:
         #     return Response(status=HTTP_401_UNAUTHORIZED)

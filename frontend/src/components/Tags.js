@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react'
+import axios from 'axios'
+
+import Auth from '../lib/Auth'
 
 
 
@@ -8,8 +11,20 @@ const Tags = () => {
     errors: {}
   })
 
+
+  useEffect(() => {
+    axios.get('/api/tags/', {
+      headers: { Authorization: `Bearer ${Auth.getToken()}` }
+    })
+      .then(res => setData(res.data))
+  },[])
+
+
+  if (!data) return null
+  console.log(data)
+
   return (
-    <div className='w-100 fixed bottom-2 mb3 flex items-start justify-center bg-white'>
+    <div className='tags w-100 fixed mb3 flex items-start justify-center bg-white'>
       <div className='mr4 grow'>
         <a href='#' className='folder1 no-underline .tracked'>Inbox</a>
       </div>

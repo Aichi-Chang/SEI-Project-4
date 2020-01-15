@@ -36,7 +36,7 @@ const Register = (props) => {
         if (errors.errors === '')
           props.history.push('/login')
       }) 
-      .catch(err =>setErrors({ ...errors, ...err.error }))
+      .catch(err =>setErrors({ ...errors, errors: err.response.data }))
   }
   
 

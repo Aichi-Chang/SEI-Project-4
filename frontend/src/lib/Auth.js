@@ -32,7 +32,7 @@ class Auth {
 
   static isAuthenticated() {
     const payload = this.getPayload()
-    console.log(payload)
+    // console.log(payload)
     // const now = Math.round(Date.now() / 1000)
     return payload
     // return this.getPayload().sub

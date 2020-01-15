@@ -1,8 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Work+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Mono:300&display=swap');
 
 body {
   font-family: 'Work Sans', sans-serif;
   letter-spacing: .5px;
+  position: relative;
 }
 
 input {
@@ -18,33 +20,133 @@ input {
 }
 
 .folder1 {
-  padding: 10px 64px 10px 11px;
+  padding: 8px 65px 8px 11px;
   color: #EBEBEB;
   background: #267DFF;
   border-radius: 20px;
 }
 
 .folder2 {
-  padding: 10px 64px 10px 11px;
+  padding: 8px 65px 8px 11px;
   color: #EBEBEB;
   background: #FF3C3C;
   border-radius: 20px;
 }
 
 .folder3 {
-  padding: 10px 64px 10px 11px;
+  padding: 8px 65px 8px 11px;
   color: #EBEBEB;
   background: #B0B0B0;
   border-radius: 20px;
 }
 
 .folder4 {
-  padding: 8px 64px 8px 11px;
+  padding: 8px 65px 8px 11px;
   color: #EBEBEB;
   background: #602E00;
   border-radius: 20px;
 }
 
-/* .tags:hover {
 
-} */
+.home {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: fixed;
+  bottom: 50px;
+  z-index: 2;
+}
+
+.tags {
+  top: 90px;
+}
+
+.project-title {
+  font-family: IBM Plex Mono, monospace;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 23px;
+  text-align: center;
+  letter-spacing: 0.03em;
+
+  color: #323232;
+
+  /* border-top: 1px solid #B0B0B0; */
+  /* border-bottom: 1px solid #B0B0B0; */
+}
+
+.project {
+  width: 500px;
+  border-bottom: 1px solid #B0B0B0;
+}
+
+.add-project-text {
+  opacity: 0;
+  transition: opacity ease .5s;
+}
+
+.home:hover .add-project-text{
+  opacity: 1;
+}
+
+.add-project-icon {
+  border: none;
+}
+
+.title {
+  border-style: none; 
+  border-color: Transparent; 
+  overflow: auto;  
+  border-bottom: 1px solid #B0B0B0;
+  
+  font-family: IBM Plex Mono;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 23px;
+  text-align: center;
+  letter-spacing: 0.03em;
+
+  color: #323232;
+}
+
+.title:focus {
+  outline: none;
+}
+
+.note {
+  border-style: none; 
+  border-color: Transparent; 
+  overflow: auto;  
+  
+  font-family: IBM Plex Mono;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 23px;
+  /* text-align: center; */
+  letter-spacing: 0.03em;
+
+  color: #323232;
+
+  resize: none
+}
+
+
+.note:focus {
+  outline: none;
+}
+
+.main-home {
+  max-height: 350px;
+  overflow: scroll;
+  top: 200px;
+}
+
+.single-project {
+  width: 500px;
+  margin-top: 200px;
+  max-height: 400px;
+  overflow: scroll;
+}

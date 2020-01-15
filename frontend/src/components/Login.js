@@ -27,7 +27,7 @@ const Login = (props) => {
       .then(res => {
         Auth.setToken(res.data.token)
         Auth.setUser(res.data.user)
-        props.history.push('/')
+        props.history.push('/home')
       })
       .catch(err => setErrors({ ...errors, errors: err.data }))
   }
@@ -69,7 +69,7 @@ const Login = (props) => {
       </div>
       
       <div className="moon-gray f6 tc">
-        <p>Not a member? <a href={'/register'} className='moon-gray dim:hover underline .tracked'>Join</a></p>
+        <p>Not a member? <a href={'/'} className='moon-gray dim:hover underline .tracked'>Join</a></p>
       </div>
     </form>
   </div>

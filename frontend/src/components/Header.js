@@ -1,27 +1,36 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+
 import Auth from '../lib/Auth'
+import Tags from './Tags'
+import Calander from './svgs/Calander'
+import LogoutIcon from './svgs/LogoutIcon'
 
 
-const Header = () => {
 
-  const [data, setData] = useState()
+const Header = (props) => {
+  const [data, setData] = useState({
 
-  function handleLogout(props) {
+  })
+
+
+  function handleLogout() {
     // e.preventDefault()
     Auth.logOut()
-    setData({ ...data })
-    // props.history.push('/')
+    // the props doesn't have anything
+    // props.history.push('/login')
   }
 
 
   return (
     <div className='w-100 fixed flex items-center justify-center bg-white'>
       <h1 className='tracked'>WORKBENCH</h1>
-      <a href='#' className='fixed left-2 .no-underline near-black'>Calander</a>
-      {/* {Auth.isAuthenticated() && <div>hi</div>} */}
-      {Auth.isAuthenticated() && <a className='z-2 fixed right-2 .no-underline near-black' onClick={(e)=>handleLogout(e)}>
-         Logout
+      {Auth.isAuthenticated() && <a href='#' className='fixed left-2 .no-underline near-black grow pointer'>
+        <Calander />  
       </a>}
+      {Auth.isAuthenticated() && <a href='/' className='z-2 fixed right-2 .no-underline near-black pointer grow' onClick={(e)=>handleLogout(e)}>
+        <LogoutIcon />
+      </a>}
+      {Auth.isAuthenticated() && <Tags />}
     </div>
 
   )
