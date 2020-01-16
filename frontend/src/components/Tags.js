@@ -24,7 +24,7 @@ const Tags = () => {
 
     <div className='flex items-center justify-center mt5'>
       <div className='mr4 grow'>
-        <Link to='/inbox' className='folder1 no-underline .tracked'>{tags[2].name}</Link>
+        <Link to='/inbox' className='folder1 no-underline .tracked'>Inbox</Link>
       </div>
       <div className='mr4 grow'>
         <Link to='/today' className='folder2 no-underline .tracked'>{tags[0].name}</Link>
@@ -33,7 +33,7 @@ const Tags = () => {
         <Link to='#' className='folder3 no-underline .tracked'>{tags[1].name}</Link>
       </div>
       <div className='grow'>
-        <Link to='#' className='folder4 no-underline .tracked'>{tags[3].name}</Link>        
+        <Link to='#' className='folder4 no-underline .tracked'>{tags[2].name}</Link>        
       </div>
       
     </div>}

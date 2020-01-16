@@ -1,0 +1,23 @@
+[
+{
+  "model": "todos.tag",
+  "pk": 1,
+  "fields": {
+    "name": "Today"
+  }
+},
+{
+  "model": "todos.tag",
+  "pk": 2,
+  "fields": {
+    "name": "Whatever"
+  }
+},
+{
+  "model": "todos.tag",
+  "pk": 3,
+  "fields": {
+    "name": "Archive"
+  }
+}
+]

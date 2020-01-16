@@ -89,7 +89,7 @@ const AddNewProject = (props) => {
             <option value=''>None</option>
             <option value={tags[0].id}>{tags[0].name}</option>
             <option value={tags[1].id}>{tags[1].name}</option>
-            <option value={tags[3].id}>{tags[3].name}</option>
+            <option value={tags[2].id}>{tags[2].name}</option>
           </select>
           <div className='home grow'>
             <p className='add-project-text tc ma0'>add to my list</p>
