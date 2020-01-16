@@ -3,7 +3,6 @@ from rest_framework.response import Response # get the Response class from DRF
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated # our IsAuthenticated permission import, there are a few different options here
 from rest_framework.status import HTTP_200_OK, HTTP_201_CREATED, HTTP_416_REQUESTED_RANGE_NOT_SATISFIABLE, HTTP_422_UNPROCESSABLE_ENTITY, HTTP_204_NO_CONTENT, HTTP_401_UNAUTHORIZED
 from rest_framework import viewsets, filters
-from django_filters.rest_framework import DjangoFilterBackend
 from django.contrib.auth import get_user_model
 
 from .models import Todo, Tag, Project
