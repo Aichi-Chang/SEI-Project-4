@@ -18,7 +18,7 @@ class RegisterView(APIView):
             serializer.save()
             return Response({'message': 'Registration successful'})
 
-        return Response(serializer.errors, status=422)
+        return Response({'message':serializer.errors}, status=422)
 
 
 class LoginView(APIView):
@@ -39,4 +39,6 @@ class LoginView(APIView):
             raise PermissionDenied({'message': 'Invalid credentials'})
 
         token = jwt.encode({'sub': user.id}, settings.SECRET_KEY, algorithm='HS256')
-        return Response({'token': token, 'message': f'Welcome back {user.username}!'})
+        return Response({'token': token, 'user': {'id': user.id, 'email': user.email}, 'message': f'Great to see you again, {user.username}!'})
+
+

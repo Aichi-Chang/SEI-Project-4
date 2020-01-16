@@ -1,0 +1,46 @@
+{
+  "name": "project-4",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:Aichi-Chang/project-4.git",
+  "author": "Aichi Chang <phoebexxxc@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/core": "^7.7.7",
+    "@babel/preset-env": "^7.7.7",
+    "@babel/preset-react": "^7.7.4",
+    "axios": "^0.19.1",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^3.4.2",
+    "html-webpack-plugin": "^3.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "react": "^16.12.0",
+    "react-dnd": "^10.0.2",
+    "react-dnd-html5-backend": "^10.0.2",
+    "react-dom": "^16.12.0",
+    "react-router-dom": "^5.1.2",
+    "sass-loader": "^8.0.1",
+    "style-loader": "^1.1.2",
+    "tachyons": "^4.11.1",
+    "url-loader": "^3.0.0",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.10.1"
+  },
+  "scripts": {
+    "build": "webpack -p",
+    "serve:backend": "python manage.py runserver 4000",
+    "serve:frontend": "webpack-dev-server"
+  },
+  "devDependencies": {
+    "@svgr/webpack": "^5.0.1",
+    "svg-url-loader": "^3.0.3"
+  },
+  "static.json": {
+      "root": "build/",
+      "clean_urls": false,
+      "routes": {
+        "/**": "index.html"
+      }
+    }
+}

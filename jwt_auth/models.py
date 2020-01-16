@@ -6,4 +6,5 @@ class User(AbstractUser):
 
     # custom fields here...
     email = models.CharField(max_length=50, unique=True)
-    # image = models.CharField(max_length=200)
+
+
