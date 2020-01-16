@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import Auth from '../lib/Auth'
 
+import { Link } from 'react-router-dom'
 
 
 const Login = (props) => {
@@ -69,7 +70,7 @@ const Login = (props) => {
       </div>
       
       <div className="moon-gray f6 tc">
-        <p>Not a member? <a href={'/'} className='moon-gray dim:hover underline .tracked'>Join</a></p>
+        <p>Not a member? <Link to={'/'} className='moon-gray dim:hover underline .tracked'>Join</Link></p>
       </div>
     </form>
   </div>

@@ -4,7 +4,7 @@ import axios from 'axios'
 
 import Auth from '../lib/Auth'
 import Back from './svgs/Back'
-
+import Header from './Header'
 
 const SingleProject = (props) => {
 
@@ -20,6 +20,7 @@ const SingleProject = (props) => {
     axios.delete(`/api/projects/${props.match.params.id}`, {
       headers: { Authorization: `Bearer ${Auth.getToken()}` }
     })
+    window.location.reload()
     // .then(res => setData(res.data)) 
   }
 
@@ -29,12 +30,15 @@ const SingleProject = (props) => {
   if (!data) return null
 
   return <div>
+    <Header />
     <div className='flex justify-center vh-100'>
       <div className='home grow'>
         <p className='add-project-text tc ma0'>yes, I'm sure</p>
-        <Link to='/inbox' className='add-project-icon ph5 pv2 no-underline dark-red' onClick={() => handleDelete()}>
-        delete this project
-        </Link>
+        <button className='add-project-icon ph5 pv2' onClick={() => handleDelete()}>
+          <Link to='/inbox' className='no-underline dark-red'>
+            delete this project
+          </Link>
+        </button>
       </div>
       <div className='single-project flex flex-column items-center relative'>
         <Link to={'/inbox'} className='z-1 absolute left-1 top-2 grow pointer'>

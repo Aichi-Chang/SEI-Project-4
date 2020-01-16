@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 
+import { Link } from 'react-router-dom'
 
 
 const Register = (props) => {
@@ -99,7 +100,7 @@ const Register = (props) => {
       </div>
       
       <div className="moon-gray f6 tc">
-        <p>Already a member? <a href={'/login'} className='moon-gray dim:hover underline .tracked'>Login</a></p>
+        <p>Already a member? <Link to={'/login'} className='moon-gray dim:hover underline .tracked'>Login</Link></p>
       </div>
     </form>
   </div>

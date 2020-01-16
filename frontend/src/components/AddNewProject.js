@@ -3,7 +3,7 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 
 import Auth from '../lib/Auth'
-
+import Header from './Header'
 import Back from './svgs/Back'
 import AddProject from './svgs/AddProject'
 
@@ -54,6 +54,7 @@ const AddNewProject = (props) => {
   }
 
   return <div>
+    <Header />
     <div className='flex justify-center items-center vh-100'>
       <div className='mt3 flex flex-column justify-center items-center'>
         {Auth.isAuthenticated() && <form 
@@ -88,7 +89,7 @@ const AddNewProject = (props) => {
             <option value=''>None</option>
             <option value={tags[0].id}>{tags[0].name}</option>
             <option value={tags[1].id}>{tags[1].name}</option>
-            <option value={tags[2].id}>{tags[2].name}</option>
+            <option value={tags[3].id}>{tags[3].name}</option>
           </select>
           <div className='home grow'>
             <p className='add-project-text tc ma0'>add to my list</p>

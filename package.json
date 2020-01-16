@@ -35,5 +35,12 @@
   "devDependencies": {
     "@svgr/webpack": "^5.0.1",
     "svg-url-loader": "^3.0.3"
-  }
+  },
+  "static.json": {
+      "root": "build/",
+      "clean_urls": false,
+      "routes": {
+        "/**": "index.html"
+      }
+    }
 }

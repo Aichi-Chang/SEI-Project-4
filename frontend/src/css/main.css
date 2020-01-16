@@ -57,9 +57,9 @@ input {
   z-index: 2;
 }
 
-.tags {
+/* .tags {
   top: 90px;
-}
+} */
 
 .project-title {
   font-family: IBM Plex Mono, monospace;

@@ -63,14 +63,14 @@ class ProjectDetailView(APIView):
 
     
     def delete(self, request, pk):
-        projects = Project.objects.filter(owner=request.user.id)
+        # projects = Project.objects.filter(owner=request.user.id)
         project = Project.objects.get(pk=pk)
         if project.owner.id != request.user.id:
             return Response(status=HTTP_401_UNAUTHORIZED)
         project.delete()
-        serialized_projects = PopulatedProjectSerializer(projects, many=True)
-        return Response(serialized_projects.data, status=HTTP_200_OK)
-
+        # serialized_projects = PopulatedProjectSerializer(projects, many=True)
+        return Response(status=HTTP_200_OK)
+        # serialized_projects.data, 
 
 class TodoListView(APIView):
 

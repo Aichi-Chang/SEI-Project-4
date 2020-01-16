@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 
 import Auth from '../lib/Auth'
 import AddProject from './svgs/AddProject'
+import Header from './Header'
 
 
 
@@ -24,7 +25,8 @@ const Home = () => {
   if (!data) return null 
   
   return <div className='flex items-center justify-center '>
-
+    
+    <Header />
     {Auth.isAuthenticated() && <div className='main-home flex justify-center fixed'>
       <div className='home grow'>
         <p className='add-project-text tc ma0'>add new project</p>
