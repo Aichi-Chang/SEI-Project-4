@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 
 import Auth from '../lib/Auth'
 import Tags from './Tags'
@@ -7,11 +8,8 @@ import LogoutIcon from './svgs/LogoutIcon'
 
 
 
-const Header = (props) => {
-  const [data, setData] = useState({
-
-  })
-
+const Header = () => {
+  
 
   function handleLogout() {
     // e.preventDefault()

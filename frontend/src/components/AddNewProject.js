@@ -16,13 +16,29 @@ const AddNewProject = (props) => {
   const [errors, setErrors] = useState({
     errors: ''
   })
+  const [tags, setTags] = useState()
+  
+  useEffect(() => {
+    axios.get('/api/tags/', {
+      headers: { Authorization: `Bearer ${Auth.getToken()}` }
+    })
+      .then(res => setTags(res.data)) 
+  },[])
+
+  if (!tags) return null
 
   function handleChange(e) {
-    e.persist()
+    // e.persist()
     console.log(data)
     setData({ ...data, [e.target.name]: e.target.value })
     setErrors({ ...errors, [e.target.name]: '' })
   }
+
+  function handleChangeTags(e) {
+    console.log(data)
+    setData({ ...data, [e.target.name]: e.target.value ? [parseInt(e.target.value)] : [] })
+  }
+
 
   function handleSubmit(e) {
     e.preventDefault()
@@ -32,7 +48,7 @@ const AddNewProject = (props) => {
       .then(res => {
         console.log(res.data)
         if (errors.errors === '')
-          props.history.push('/home/')
+          props.history.push('/inbox')
       })
       .catch(err => setErrors({ ...errors, errors: err.response.data }))
   }
@@ -44,7 +60,7 @@ const AddNewProject = (props) => {
           onSubmit={(e) => handleSubmit(e)}
           className='flex flex-column items-center mt5 relative'
         >
-          <Link to={'/home'} className='z-1 absolute left-1 top-1 grow pointer'>
+          <Link to={'/inbox'} className='z-1 absolute left-1 top-1 grow pointer'>
             <Back />
           </Link>
           <input
@@ -59,10 +75,21 @@ const AddNewProject = (props) => {
             onChange={(e) => handleChange(e)}
             className='note pa2'
             placeholder="Your note here"
-            rows='15'
+            rows='12'
             cols='50'
             name='note'
           />
+          <select 
+            className='dropDown' 
+            name='tags'
+            onChange={(e) => handleChangeTags(e)}  
+          >
+            <option disabled>select a tag</option>
+            <option value=''>None</option>
+            <option value={tags[0].id}>{tags[0].name}</option>
+            <option value={tags[1].id}>{tags[1].name}</option>
+            <option value={tags[2].id}>{tags[2].name}</option>
+          </select>
           <div className='home grow'>
             <p className='add-project-text tc ma0'>add to my list</p>
             <button className='add-project-icon ph5 pv2 pointer'>

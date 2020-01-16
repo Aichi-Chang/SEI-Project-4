@@ -6,57 +6,32 @@ import Auth from '../lib/Auth'
 
 
 const Tags = () => {
-
-  const [data, setData] = useState()
-
+  const [tags, setTags] = useState()
+  
   useEffect(() => {
-    axios.get('/api/projects/', {
+    axios.get('/api/tags/', {
       headers: { Authorization: `Bearer ${Auth.getToken()}` }
     })
-      .then(res => setData(res.data))
-  }, [])
+      .then(res => setTags(res.data)) 
+  },[])
 
+  if (!tags) return null
+  // console.log(tags)
 
-  const initial = {
-    tags: ''
-  }
-
-
-  if (!data) return null
-
-  console.log(data.map(
-    item => {
-      item.tags[0] 
-      if (!item.tags[0]) return null
-      else return item.tags[0].name
-    }  
-  ))
-
-
-  function filterByTag () {
-    // data.filter(function() {
-    // console.log(data)
-  }
 
   return (
     <div className='tags w-100 fixed mb3 flex items-start justify-center bg-white'>
       <div className='mr4 grow'>
-        <a href='/inbox' className='folder1 no-underline .tracked'>Inbox</a>
+        <a href='/inbox' className='folder1 no-underline .tracked'>{tags[2].name}</a>
       </div>
       <div className='mr4 grow'>
-        <a 
-          href='/today' 
-          className='folder2 no-underline .tracked'
-          onClick={filterByTag}
-        >
-          Today
-        </a>
+        <a href='/today' className='folder2 no-underline .tracked'>{tags[0].name}</a>
       </div>
       <div className='mr4 grow'>
-        <a href='#' className='folder3 no-underline .tracked'>Whatever</a>
+        <a href='#' className='folder3 no-underline .tracked'>{tags[1].name}</a>
       </div>
       <div className='grow'>
-        <a href='#' className='folder4 no-underline .tracked'>Done</a>        
+        <a href='#' className='folder4 no-underline .tracked'>{tags[3].name}</a>        
       </div>
       
 
