@@ -11,9 +11,7 @@ import Header from './Header'
 
 const Home = () => {
   const [data, setData] = useState()
-  const [errors, setErrors] = useState({
-    errors: {}
-  })
+
 
   useEffect(() => {
     axios.get('/api/projects/', {
