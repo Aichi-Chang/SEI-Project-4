@@ -24,7 +24,7 @@ const SingleProject = (props) => {
     // .then(res => setData(res.data)) 
   }
 
-  console.log(data)
+  // console.log(data)
 
 
   if (!data) return null

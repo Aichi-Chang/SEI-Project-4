@@ -32,10 +32,10 @@ const Register = (props) => {
     // e.persist()
     e.preventDefault()
     axios.post('/api/register/', data)
-      .then(res => {
-        console.log(res.data)
-        if (errors.errors === '')
-          props.history.push('/login')
+      .then(() => {
+        // console.log(res.data)
+        // if (errors.errors === '')
+        props.history.push('/login')
       }) 
       .catch(err =>setErrors({ ...errors, errors: err.response.data }))
   }

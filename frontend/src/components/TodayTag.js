@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 
@@ -10,41 +10,34 @@ import Header from './Header'
 
 
 
-const Today = () => {
-  const [data, setData] = useState('')
+const Today = ({ data }) => {
+  // const [data, setData] = useState([])
 
-  useEffect(() => {
-    axios.get('/api/projects/', {
-      headers: { Authorization: `Bearer ${Auth.getToken()}` }
-    })
-      .then(res => setData(res.data))
-      
-  }, [])
-
-
-
-  if (!data) return null
-
-
-  function filterByTag () {
-    const newData = data.filter(function(item) {
-      if (!item.tags[0]) return null
-      else return item.tags[0].name === 'Today'
-    })
-    // setData(newData)
-    return newData
-  }
-
-  console.log(filterByTag())
+  // useEffect(() => {
+  //   axios.get('/api/projects/', {
+  //     headers: { Authorization: `Bearer ${Auth.getToken()}` }
+  //   })
+  //     .then(res => setData(res.data))
+  //     // .then(() => setData(filterByTag))
+  // }, [])
 
 
 
+  // if (!data) return null
 
-  
+  // const filterByTag = () => {
+  //   const newData = data.filter(function(item) {
+  //     if (!item.tags[0] || item.tags[0].name !== 'Today') return null
+  //     else return item.tags[0].name === 'Today'
+  //   })
+  //   return newData
+  // }
+
+  // console.log(filterByTag())
 
   return <div>
-    <Header />
-    <div className='flex items-center justify-center '>
+    <Header data={data}/>
+    <div className='flex items-center justify-center'>
       {Auth.isAuthenticated() && <div className='main-home flex justify-center fixed'>
         <div className='flex flex-column-reverse items-center justify-center'>
           {data.map((projects, i) => {
