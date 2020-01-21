@@ -10,16 +10,16 @@ import Header from './Header'
 
 
 
-const Today = ({ data }) => {
-  // const [data, setData] = useState([])
+const Today = () => {
+  const [data, setData] = useState([])
 
-  // useEffect(() => {
-  //   axios.get('/api/projects/', {
-  //     headers: { Authorization: `Bearer ${Auth.getToken()}` }
-  //   })
-  //     .then(res => setData(res.data))
-  //     // .then(() => setData(filterByTag))
-  // }, [])
+  useEffect(() => {
+    axios.get('/api/projects/', {
+      headers: { Authorization: `Bearer ${Auth.getToken()}` }
+    })
+      .then(res => setData(res.data))
+      // .then(() => setData(filterByTag))
+  }, [])
 
 
 

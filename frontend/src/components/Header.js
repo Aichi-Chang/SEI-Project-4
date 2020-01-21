@@ -10,7 +10,7 @@ import LogoutIcon from './svgs/LogoutIcon'
 
 
 
-const Header = ({ data }) => {
+const Header = () => {
 
   function handleLogout() {
     // e.preventDefault()
@@ -20,7 +20,7 @@ const Header = ({ data }) => {
   }
 
   const [tags, setTags] = useState()
-  const [today, setToday] = useState()
+  // const [today, setToday] = useState()
   
   useEffect(() => {
     axios.get('/api/tags/', {
@@ -31,17 +31,18 @@ const Header = ({ data }) => {
   },[])
 
   if (!tags) return null
-  console.log(data)
 
-  const filterByTag = () => {
-    const newData = data.filter(function(item) {
-      if (!item.tags[0] || item.tags[0].name !== 'Today') return null
-      else return item.tags[0].name === 'Today'
-    })
-    return newData
-  }
+  // console.log(data)
 
-  console.log(filterByTag())
+  // const filterByTag = () => {
+  //   const newData = data.filter(function(item) {
+  //     if (!item.tags[0] || item.tags[0].name !== 'Today') return null
+  //     else return item.tags[0].name === 'Today'
+  //   })
+  //   return newData
+  // }
+
+  // console.log(filterByTag())
 
 
   return (
@@ -60,7 +61,7 @@ const Header = ({ data }) => {
             <Link to='/inbox' className='folder1 no-underline .tracked'>Inbox</Link>
           </div>
           <div className='mr4 grow'>
-            <Link to='/today' className='folder2 no-underline .tracked' onClick={() => setToday(filterByTag())} today={today}>{tags[0].name}</Link>
+            <Link to='/today' className='folder2 no-underline .tracked'>{tags[0].name}</Link>
           </div>
           <div className='mr4 grow'>
             <Link to='#' className='folder3 no-underline .tracked'>{tags[1].name}</Link>

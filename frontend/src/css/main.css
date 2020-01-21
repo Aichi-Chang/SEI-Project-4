@@ -146,7 +146,7 @@ input {
 
 .single-project {
   width: 500px;
-  margin-top: 200px;
+  margin-top: 150px;
   max-height: 400px;
   overflow: scroll;
 }
@@ -174,4 +174,31 @@ input {
 
 .dropDown:focus {
   outline: none;
+}
+
+
+.add-todo-icon {
+  top: 25px;
+}
+
+.projectId {
+  visibility: hidden;
+}
+
+.todos {
+  width: 500px;
+  
+  font-family: IBM Plex Mono, monospace;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 23px;
+  text-align: center;
+  letter-spacing: 0.03em;
+  /* border-bottom: 1px solid #B0B0B0; */
+}
+
+.deleteTodo {
+  right: -190px;
+  top: -3px;
 }

@@ -6,6 +6,8 @@ import Auth from '../lib/Auth'
 import Back from './svgs/Back'
 import Header from './Header'
 
+
+
 const SingleProject = (props) => {
 
   const [data, setData] = useState()
@@ -24,10 +26,25 @@ const SingleProject = (props) => {
     // .then(res => setData(res.data)) 
   }
 
-  // console.log(data)
+  
+
+  
 
 
   if (!data) return null
+  
+  console.log(data)
+
+  function handleCheckbox() {
+    console.log(data.todos.map((todo) => {
+      return todo.id
+    }))
+  }
+
+  function todoDelete() {
+    
+  }
+
 
   return <div>
     <Header />
@@ -44,9 +61,38 @@ const SingleProject = (props) => {
         <Link to={'/inbox'} className='z-1 absolute left-1 top-2 grow pointer'>
           <Back />
         </Link>
+        <Link 
+          to={{ 
+            pathname: '/add-todo', 
+            state: { id: parseInt(props.match.params.id) } 
+          }} 
+          className='no-underline z-2 absolute right-2 grow pointer add-todo-icon flex items-center justify-center'
+        >
+          <p className='z-2 grow dark-gray dim:hover absolute f6'>
+            +todo
+          </p>
+        </Link>
         <h1 className='title pa3 w-100'>{data.title}</h1>
-        <p className='note pa2'>{data.note}</p>
-        {(data.tags[0]) ? <p className='mt5 f6 gray'>{`Tag: ${data.tags[0].name}`}</p> : null}
+        <p className='note'>{data.note}</p>
+        <div className=''>
+          {data.todos ? 
+            data.todos.map((todo, i) =>  
+              <div key={i} className='todos flex flex-wrap items-center justify-center mt2 b--moon-gray bg-near-white relative'>
+                <input 
+                  onClick={(e) => handleCheckbox(e)}
+                  type='checkbox'
+                  defaultChecked={false}
+                  className='w-10'
+                />
+                <p className='f6 gray w-90 mt1 mb1'>{todo.heading}</p>
+                <div 
+                  className='f6 gray w-90 mt1 mb1 absolute pointer grow deleteTodo'
+                  onClick={() => todoDelete()}  
+                >delete</div>
+              </div> 
+            )
+            : null} 
+        </div>
       </div>
     </div>  
   </div>

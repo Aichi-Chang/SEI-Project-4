@@ -27,7 +27,7 @@ class TodoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Todo
         fields = ('id', 'heading', 'content', 'completed', 'owner', 'project', 'created_at')
-        extra_kwargs = {'project': {'required': False}}
+        extra_kwargs = {'content': {'required': False}}
 
 
 class PopulatedTodoSerializer(TodoSerializer):

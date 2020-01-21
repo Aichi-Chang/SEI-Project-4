@@ -34,7 +34,7 @@ class Project(models.Model):
 
 class Todo(models.Model):
     heading = models.CharField(max_length=50)
-    content = models.TextField()
+    content = models.TextField(blank=True, null=True)
     completed = models.BooleanField(default=False)
     owner = models.ForeignKey(User, related_name='todos', on_delete=models.CASCADE)
     project = models.ForeignKey(Project, related_name='todos', on_delete=models.CASCADE, blank=True, null=True)
