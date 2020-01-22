@@ -6,7 +6,7 @@ import { HashRouter, Switch, Route } from 'react-router-dom'
 import './css/main.css'
 import 'tachyons'
 
-
+import MyApp from './components/Calender'
 import AddTodo from './components/AddTodo'
 import TodayTag from './components/TodayTag'
 import SingleProject from './components/SingleProject'
@@ -30,6 +30,7 @@ const App = () => {
     <HashRouter>
 
       <Switch>
+        <Route exact path = '/calender' component={MyApp} />
         <Route exact path = '/inbox' component={Home} />
         <Route exact path = '/add-todo' component={AddTodo} />       
         <Route exact path = '/login' component={Login} />

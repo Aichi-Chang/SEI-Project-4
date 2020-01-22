@@ -17,7 +17,7 @@ User = get_user_model()
 
 
 
-class ProjectListView(APIView): 
+class ProjectListView(APIView):
 
     permission_classes = (IsAuthenticatedOrReadOnly, )
 
@@ -40,8 +40,8 @@ class ProjectDetailView(APIView):
 
     permission_classes = (IsAuthenticatedOrReadOnly, )
 
-    def get(self, _request, pk):
-        project = Project.objects.get(pk=pk)
+    def get(self, _request, project_pk, **kwargs):
+        project = Project.objects.get(pk=project_pk)
         
         serialized_projects = PopulatedProjectSerializer(project)
         return Response(serialized_projects.data)
@@ -61,9 +61,9 @@ class ProjectDetailView(APIView):
         return Response(status=HTTP_416_REQUESTED_RANGE_NOT_SATISFIABLE)
 
     
-    def delete(self, request, pk):
+    def delete(self, request, project_pk, **kwargs):
         # projects = Project.objects.filter(owner=request.user.id)
-        project = Project.objects.get(pk=pk)
+        project = Project.objects.get(pk=project_pk)
         if project.owner.id != request.user.id:
             return Response(status=HTTP_401_UNAUTHORIZED)
         project.delete()
@@ -107,19 +107,19 @@ class TodoDetailView(APIView):
 
     permission_classes = (IsAuthenticatedOrReadOnly, )
 
-    def get(self, request, pk):
-        todo = Todo.objects.get(pk=pk)
+    def get(self, _request, todo_pk, **kwargs):
+        todo = Todo.objects.get(pk=todo_pk)
         # this doesn't work, only returns "Todo matching query does not exist."
         # if todo.owner.id != request.user.id:
         #     return Response(status=HTTP_401_UNAUTHORIZED)
         serialized_todos = PopulatedTodoSerializer(todo)
         return Response(serialized_todos.data)
 
-    def put(self, request, pk):
+    def put(self, request, todo_pk, **kwargs):
         # why we attach the user as owner again in edit? shoundt it be added already when create the todo?
         request.data['owner'] = request.user.id
         # request.data['project'] = pk
-        todo = Todo.objects.get(pk=pk)
+        todo = Todo.objects.get(pk=todo_pk)
         if todo.owner.id != request.user.id:
             return Response(status=HTTP_401_UNAUTHORIZED)
         # remember to add the original todo here!! or it will create a new todo instead of updating it
@@ -131,9 +131,9 @@ class TodoDetailView(APIView):
         return Response(status=HTTP_416_REQUESTED_RANGE_NOT_SATISFIABLE)
 
     
-    def delete(self, request, pk, **Kwargs):
+    def delete(self, request, todo_pk, **Kwargs):
         todos = Todo.objects.filter(owner=request.user)
-        todo = Todo.objects.get(pk=pk)
+        todo = Todo.objects.get(pk=todo_pk)
         if todo.owner.id != request.user.id:
             return Response(status=HTTP_401_UNAUTHORIZED)
         todo.delete()

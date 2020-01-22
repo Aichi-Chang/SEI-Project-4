@@ -10,7 +10,7 @@ import Header from './Header'
 
 const SingleProject = (props) => {
 
-  const [data, setData] = useState()
+  const [data, setData] = useState({ todos: [] })
 
   useEffect(() => {
     fetch(`/api/projects/${props.match.params.id}`)
@@ -26,23 +26,22 @@ const SingleProject = (props) => {
     // .then(res => setData(res.data)) 
   }
 
-  
-
-  
-
 
   if (!data) return null
-  
   console.log(data)
 
-  function handleCheckbox() {
-    console.log(data.todos.map((todo) => {
-      return todo.id
-    }))
-  }
+  // function handleCheckbox(e) {
+  //   axios.delete(`/api/projects/${props.match.params.id}/todos/${e.target.id}/`, {
+  //     headers: { Authorization: `Bearer ${Auth.getToken()}` }
+  //   })
 
-  function todoDelete() {
-    
+  // }
+
+  function todoDelete(e) {
+    axios.delete(`/api/projects/${props.match.params.id}/todos/${e.target.id}/`, {
+      headers: { Authorization: `Bearer ${Auth.getToken()}` }
+    })
+    window.location.reload()
   }
 
 
@@ -74,21 +73,22 @@ const SingleProject = (props) => {
         </Link>
         <h1 className='title pa3 w-100'>{data.title}</h1>
         <p className='note'>{data.note}</p>
-        <div className=''>
+        <div className='absolute bottom-0'>
           {data.todos ? 
             data.todos.map((todo, i) =>  
-              <div key={i} className='todos flex flex-wrap items-center justify-center mt2 b--moon-gray bg-near-white relative'>
-                <input 
+              <div key={i} className='todos mt1 relative flex flex-wrap items-center b--moon-gray bg-near-white'>
+                {/* <input 
                   onClick={(e) => handleCheckbox(e)}
                   type='checkbox'
                   defaultChecked={false}
                   className='w-10'
-                />
+                /> */}
                 <p className='f6 gray w-90 mt1 mb1'>{todo.heading}</p>
                 <div 
+                  id={todo.id}
                   className='f6 gray w-90 mt1 mb1 absolute pointer grow deleteTodo'
-                  onClick={() => todoDelete()}  
-                >delete</div>
+                  onClick={(e) => todoDelete(e)}  
+                >✕</div>
               </div> 
             )
             : null} 

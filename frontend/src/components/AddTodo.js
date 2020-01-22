@@ -8,7 +8,7 @@ import Back from './svgs/Back'
 import AddProject from './svgs/AddProject'
 
 const AddTodo = (props) => {
-  const [data, setData] = useState({
+  const [todoData, setTodoData] = useState({
     heading: '',
     content: '',
     project: '',
@@ -18,31 +18,29 @@ const AddTodo = (props) => {
     errors: ''
   })
 
+  useEffect(() => {
+    setTodoData({ ...todoData, project: props.location.state.id })
+  },[])
 
   function handleChange(e) {
     // e.persist()
-    console.log(data)
-    setData({ ...data, [e.target.name]: e.target.value })
+    console.log(todoData)
+    setTodoData({ ...todoData, [e.target.name]: e.target.value })
     setErrors({ ...errors, [e.target.name]: '' })
   }
 
   function handleSubmit(e) {
     e.preventDefault()
-    axios.post('/api/todos/', data, {
+    axios.post('/api/todos/', todoData, {
       headers: { Authorization: `Bearer ${Auth.getToken()}` }
     })
-      .then(res => {
-        console.log(res.data)
+      .then(() => {
         if (errors.errors === '')
-          props.history.push('/inbox')
+          props.history.push(`/single-project/${props.location.state.id}`)
       })
       .catch(err => setErrors({ ...errors, errors: err.response.data }))
   }
 
-  useEffect(() => {
-    setData({ ...data, project: props.location.state.id })
-  },[])
-  
 
 
   return <div>
@@ -59,24 +57,16 @@ const AddTodo = (props) => {
           <input
             onChange={(e) => handleChange(e)}
             type='text'
-            className='title pa2 w-100'
+            className='title pa2'
             name='heading'
             placeholder='... Toto'
             maxLength='35'
           />
-          {/* <textarea 
-            onChange={(e) => handleChange(e)}
-            className='note pa2'
-            placeholder="Your note here"
-            rows='12'
-            cols='50'
-            name='content'
-          /> */}
           <input 
             onChange={(e) => handleChange(e)}
             type='text'
             name='project'
-            value={data.project}
+            value={todoData.project}
             className='projectId'
           />
           <div className='home grow'>

@@ -95,6 +95,7 @@ input {
 }
 
 .title {
+  width: 500px;
   border-style: none; 
   border-color: Transparent; 
   overflow: auto;  
@@ -200,5 +201,5 @@ input {
 
 .deleteTodo {
   right: -190px;
-  top: -3px;
+  top: 0;
 }
