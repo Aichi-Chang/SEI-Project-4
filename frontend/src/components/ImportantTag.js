@@ -3,13 +3,11 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 
 import Auth from '../lib/Auth'
-// import Tags from './Tags'
-// import Calander from './svgs/Calander'
-// import LogoutIcon from './svgs/LogoutIcon'
 
 
 
-const Today = () => {
+
+const ImportantTag = () => {
   const [data, setData] = useState([])
   const [newdata, setNewData] = useState([])
 
@@ -21,27 +19,12 @@ const Today = () => {
         const data2 = res.data
         setData(res.data)
         const newData = data2.filter((ele)=> {
-          if (!ele.tags[0] || ele.tags[0].name !== 'Today') return null
-          else return ele.tags[0].name === 'Today'
+          if (!ele.tags[0] || ele.tags[0].name !== 'Important') return null
+          else return ele.tags[0].name === 'Important'
         })
         setNewData(newData)
       })
   }, [])
-
-
-
-  // if (!newdata) return null
-
-  // const filterByTag = () => {
-  //   const newData = data.filter(function(item) {
-  //     if (!item.tags[0] || item.tags[0].name !== 'Today') return null
-  //     else return item.tags[0].name === 'Today'
-  //   })
-  //   return newData
-  // }
-
-  // console.log(filterByTag())
-  // console.log(newdata)
 
 
   return <div>
@@ -59,4 +42,4 @@ const Today = () => {
   </div>
 }
 
-export default Today
+export default ImportantTag

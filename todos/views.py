@@ -6,7 +6,7 @@ from rest_framework import viewsets, filters
 from django.contrib.auth import get_user_model
 
 from .models import Todo, Tag, Project
-from .serializers import PopulatedTodoSerializer, TodoSerializer, TagSerializer, ProjectSerializer, PopulatedProjectSerializer, OwnerSerializer, PopulatedOwnerSerializer
+from .serializers import PopulatedTodoSerializer, TodoSerializer, TagSerializer, ProjectSerializer, PopulatedProjectSerializer, OwnerSerializer, PopulatedOwnerSerializer, PopulatedTagSerializer
 
 User = get_user_model()
 
@@ -107,11 +107,11 @@ class TodoDetailView(APIView):
 
     permission_classes = (IsAuthenticatedOrReadOnly, )
 
-    def get(self, _request, todo_pk, **kwargs):
+    def get(self, request, todo_pk, **kwargs):
         todo = Todo.objects.get(pk=todo_pk)
         # this doesn't work, only returns "Todo matching query does not exist."
-        # if todo.owner.id != request.user.id:
-        #     return Response(status=HTTP_401_UNAUTHORIZED)
+        if todo.owner.id != request.user.id:
+            return Response(status=HTTP_401_UNAUTHORIZED)
         serialized_todos = PopulatedTodoSerializer(todo)
         return Response(serialized_todos.data)
 
@@ -145,9 +145,10 @@ class TodoDetailView(APIView):
 class TagListView(APIView):
     permission_classes = (IsAuthenticated, )
 
-    def get(self, _request): # as stated just a GET (index) for this view
+    def get(self, request): # as stated just a GET (index) for this view
         tags = Tag.objects.all() # get  all the categories
-        serialized_tags = TagSerializer(tags, many=True) # serialize them
+        # projects = Project.objects.filter(owner=request.user)
+        serialized_tags = PopulatedTagSerializer(tags, many=True) # serialize them
         return Response(serialized_tags.data) # send them back to the client
 
 
@@ -161,19 +162,6 @@ class TagListView(APIView):
 #             serialized_todo = PopulatedTodoSerializer(todo)
 #             return Response(serialized_todo, status=HTTP_201_CREATED)
 #         return Response(tag.errors, status=HTTP_416_REQUESTED_RANGE_NOT_SATISFIABLE)
-
-
-# class TagDetailView(APIView):
-
-#     permission_classes = (IsAuthenticatedOrReadOnly, )
-
-#     # The URL for this view is to 'api/posts/post_id/tags/tag_id', the comment id is passed as a named argument
-#     def delete(self, request, tag_pk, **kwargs): # we can ignore the comment and post id here,
-#         tag = Tag.objects.get(pk=tag_pk) # find the comment by its id
-#         if tag.owner.id != request.user.id: # check if the request came from the comment owner
-#             return Response(status=HTTP_401_UNAUTHORIZED) # if not the comment owner send back unauthorized
-#         tag.delete() # delete it
-#         return Response(status=HTTP_204_NO_CONTENT)
 
 
 

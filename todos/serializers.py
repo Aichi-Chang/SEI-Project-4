@@ -17,7 +17,7 @@ class TagSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Tag
-        fields = ('id', 'name')
+        fields = ('id', 'name', 'projects')
 
 
 class TodoSerializer(serializers.ModelSerializer):
@@ -54,4 +54,9 @@ class PopulatedProjectSerializer(ProjectSerializer): # We use this on comment po
 class PopulatedOwnerSerializer(OwnerSerializer):
 
     todos = TodoSerializer(many=True)
+    projects = ProjectSerializer(many=True)
+
+
+class PopulatedTagSerializer(TagSerializer):
+
     projects = ProjectSerializer(many=True)

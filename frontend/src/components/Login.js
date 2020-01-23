@@ -29,6 +29,7 @@ const Login = (props) => {
         Auth.setToken(res.data.token)
         Auth.setUser(res.data.user)
         props.history.push('/inbox')
+        window.location.reload()
       })
       .catch(err => setErrors({ ...errors, errors: err.data }))
   }

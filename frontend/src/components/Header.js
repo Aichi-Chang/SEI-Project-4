@@ -3,14 +3,14 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 
 import Auth from '../lib/Auth'
-import Tags from './Tags'
 import Calander from './svgs/Calander'
 import LogoutIcon from './svgs/LogoutIcon'
-// import { render } from 'react-dom'
 
 
 
 const Header = () => {
+
+  const [tags, setTags] = useState()
 
   function handleLogout() {
     // e.preventDefault()
@@ -18,38 +18,27 @@ const Header = () => {
     // the props doesn't have anything
     // props.history.push('/login')
   }
-
-  const [tags, setTags] = useState()
-  // const [today, setToday] = useState()
   
   useEffect(() => {
     axios.get('/api/tags/', {
       headers: { Authorization: `Bearer ${Auth.getToken()}` }
     })
       .then(res => setTags(res.data))
-      // .then(() => setToday(filterByTag))
+      
   },[])
 
   if (!tags) return null
+  console.log(tags)
 
-  // console.log(data)
+  // console.log(tags[0].projects.filter(e => e.owner === 1).length)
 
-  // const filterByTag = () => {
-  //   const newData = data.filter(function(item) {
-  //     if (!item.tags[0] || item.tags[0].name !== 'Today') return null
-  //     else return item.tags[0].name === 'Today'
-  //   })
-  //   return newData
-  // }
-
-  // console.log(filterByTag())
 
 
   return (
     <div className='w-100 fixed flex items-center justify-center bg-white'>
-      {Auth.isAuthenticated() && <a href='#' className='fixed top-2 left-2 .no-underline near-black grow pointer'>
+      {Auth.isAuthenticated() && <Link to='/calendar' className='fixed top-2 left-2 .no-underline near-black grow pointer'>
         <Calander />  
-      </a>}
+      </Link>}
       {Auth.isAuthenticated() && <a href='/' className='fixed top-2 right-2 .no-underline near-black pointer grow' onClick={(e)=>handleLogout(e)}>
         <LogoutIcon />
       </a>}
@@ -58,16 +47,40 @@ const Header = () => {
 
         <div className='flex items-center justify-center mt5'>
           <div className='mr4 grow'>
-            <Link to='/inbox' className='folder1 no-underline .tracked'>Inbox</Link>
+            <Link to='/inbox' className='folder1 no-underline .tracked flex flex-wrap relative'>
+              Inbox
+              <div className='absolute right-1'>
+                {
+                  tags[0].projects.filter(ele => ele.owner === Auth.getUser().id).length +
+                  tags[1].projects.filter(ele => ele.owner === Auth.getUser().id).length +
+                  tags[2].projects.filter(ele => ele.owner === Auth.getUser().id).length
+                }
+              </div>
+            </Link>
           </div>
           <div className='mr4 grow'>
-            <Link to='/today' className='folder2 no-underline .tracked'>{tags[0].name}</Link>
+            <Link to='/today' className='folder2 no-underline .tracked flex flex-wrap relative'>
+              {tags[0].name}
+              <div className='absolute right-1'>
+                {tags[0].projects.filter(ele => ele.owner === Auth.getUser().id).length}
+              </div>
+            </Link>
           </div>
           <div className='mr4 grow'>
-            <Link to='#' className='folder3 no-underline .tracked'>{tags[1].name}</Link>
+            <Link to='/important' className='folder3 no-underline .tracked flex flex-wrap relative'>
+              {tags[1].name}
+              <div className='absolute right-1'>
+                {tags[1].projects.filter(ele => ele.owner === Auth.getUser().id).length}
+              </div>
+            </Link>
           </div>
           <div className='grow'>
-            <Link to='#' className='folder4 no-underline .tracked'>{tags[2].name}</Link>        
+            <Link to='/archive' className='folder4 no-underline .tracked flex flex-wrap relative'>
+              {tags[2].name}
+              <div className='absolute right-1'>
+                {tags[2].projects.filter(ele => ele.owner === Auth.getUser().id).length}
+              </div>
+            </Link>        
           </div>
           
         </div>}

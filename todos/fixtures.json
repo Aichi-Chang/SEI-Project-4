@@ -10,7 +10,7 @@
   "model": "todos.tag",
   "pk": 2,
   "fields": {
-    "name": "Whatever"
+    "name": "Important"
   }
 },
 {

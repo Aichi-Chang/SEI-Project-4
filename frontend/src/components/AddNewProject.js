@@ -3,7 +3,6 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 
 import Auth from '../lib/Auth'
-import Header from './Header'
 import Back from './svgs/Back'
 import AddProject from './svgs/AddProject'
 
@@ -49,12 +48,12 @@ const AddNewProject = (props) => {
         console.log(res.data)
         if (errors.errors === '')
           props.history.push('/inbox')
+        window.location.reload()
       })
       .catch(err => setErrors({ ...errors, errors: err.response.data }))
   }
 
   return <div>
-    <Header />
     <div className='flex justify-center items-center vh-100'>
       <div className='mt3 flex flex-column justify-center items-center'>
         {Auth.isAuthenticated() && <form 

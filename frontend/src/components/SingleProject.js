@@ -4,7 +4,6 @@ import axios from 'axios'
 
 import Auth from '../lib/Auth'
 import Back from './svgs/Back'
-import Header from './Header'
 
 
 
@@ -46,7 +45,6 @@ const SingleProject = (props) => {
 
 
   return <div>
-    <Header />
     <div className='flex justify-center vh-100'>
       <div className='home grow'>
         <p className='add-project-text tc ma0'>yes, I'm sure</p>
@@ -67,7 +65,7 @@ const SingleProject = (props) => {
           }} 
           className='no-underline z-2 absolute right-2 grow pointer add-todo-icon flex items-center justify-center'
         >
-          <p className='z-2 grow dark-gray dim:hover absolute f6'>
+          <p className='z-2 dark-gray dim:hover absolute pt1 pb1 pl2 pr2 ba br-pill f6'>
             +todo
           </p>
         </Link>
