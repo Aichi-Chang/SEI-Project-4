@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "repository": "git@github.com:Aichi-Chang/project-4.git",
-  "author": "Aichi Chang <phoebexxxc@gmail.com>",
+  "author": "Aichi Chang <aichi.p.chang@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "@babel/core": "^7.7.7",
