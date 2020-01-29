@@ -27,7 +27,7 @@ const App = () => {
   return <div>
 
     <div className='w-100 fixed tc bg-white'>
-      <h1 className='tracked'>WORKBENCH</h1>
+      <h1 className='tracked header'>WORKBENCH</h1>
     </div>
 
     <HashRouter>
