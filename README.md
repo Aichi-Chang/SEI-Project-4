@@ -77,14 +77,24 @@ Visit the site here - [Workbench](https://project-4-workbench.herokuapp.com/#/),
 - The style of the project aimed for clean and easy to use.
 - Have inbox and other folders for different purposes. The folders are set up as the tags in the backend. When user create project, they will be able to classfy them. 
 - Use SVG files, to make the images look sharp at any dimension with tiny file sizes.
-- Styling using Tachyons.
 
 
 ### 🤗 Wins ###
 
+- I decided to complete this project on my own as we had only learned Python and Django a week prior to completing the project. It was difficult while completing it, as it showed loopholes in my knowledge but this project also helped me gain a better understanding.
+- Rather than using the front end filter function. I have learned how to override the back end's query set to limit different user's access and successfully applied it to the project. 
+- Completed the front end using React Hooks. It makes the code cleaner and easier to understand for other developers.
+- It was a great experience working with a UX designer. It helped me to see our project from a different angle.
+
 ### 🧐 Chanllenges ###
+
+- Add the tags feature halfway on the project, and it was difficult to rewrite the code and try to cover every corner that has got affected by it.
+- Try to learn new features whilst building the project. I spent a lot of time reading through the documentation and other developer's questions on Stack Overflow. It was good practice for me, but couldn't manage to complete them all on time.
+- Outside of the assigned time frame, I have used some extra time for bug fixing. So time management is important.
+
 
 ### 🔮 Potential future features ###
 
-
-I decided to complete this project on my own as I wanted to develop my knowledge of Django and Python as we had only learnt it a week prior to completing the project. I found this aspect quite tough as it showed loop holes in my knowledge but this project helped me develop a better understanding.
+- React Calender
+- React Drag and Drop
+- Link the edit function form the back end to the front end.
