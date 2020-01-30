@@ -9,7 +9,10 @@ Workbench is a schedule management app aimed at designers or students managing t
 
 Visit the site here - [Workbench](https://project-4-workbench.herokuapp.com/#/), or you can also find the GitHub repo - [GitHub](https://github.com/Aichi-Chang/project-4)
 
-#### Preview (https://media.giphy.com/media/LqCbGm2Yy7HprB4Niu/giphy.gif)
+#### Preview
+```js
+<div style="width:100%;height:0;padding-bottom:55%;position:relative;"><iframe src="https://giphy.com/embed/LqCbGm2Yy7HprB4Niu" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><p><a href="https://giphy.com/gifs/LqCbGm2Yy7HprB4Niu">via GIPHY</a></p>
+```
 
 
 
