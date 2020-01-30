@@ -85,8 +85,8 @@ Visit the site here - [Workbench](https://project-4-workbench.herokuapp.com/#/),
 
 - I decided to complete this project on my own as we had only learned Python and Django a week prior to completing the project. It was difficult while completing it, as it showed loopholes in my knowledge but this project also helped me gain a better understanding.
 - Rather than using the front end filter function. I have learned how to override the back end's query set to limit different user's access and successfully applied it to the project. 
-```
-class TodoListView(APIView):
+
+```class TodoListView(APIView):
 
     permission_classes = (IsAuthenticatedOrReadOnly, )
 
