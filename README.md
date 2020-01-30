@@ -1,6 +1,6 @@
 ![ga_cog_large_red_rgb](https://cloud.githubusercontent.com/assets/40461/8183776/469f976e-1432-11e5-8199-6ac91363302b.png)
 
-# General Assembly, Software Engineering Immersive
+#### General Assembly, Software Engineering Immersive
 
 
 ### 🚩 Project-4 - Workbench ###
@@ -61,7 +61,7 @@ Visit the site here - [Workbench](https://project-4-workbench.herokuapp.com/#/),
 | **2  days**     |  Backend Initial set up, UX design first edition  |
 | **2 days**  | Frontend set up, UX design complete      |
 | **1 day**  | Styling and Troubleshooting With Instructor   |
-| **1 day** | Bug fixes, final polish  |
+| **1 day** | Bug fixing, final polishing  |
 | **1/2 day** | Deployment     |
 
 ### 🤗 Wins ###
