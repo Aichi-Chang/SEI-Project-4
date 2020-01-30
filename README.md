@@ -3,9 +3,12 @@
 # General Assembly, Software Engineering Immersive
 
 
-### 🚩 Solo project - Workbench ###
+### 🚩 Project-4 - Workbench ###
+#### Working with UX designer
 
 The final project of the software engineering immersive course at GA London. The assignment was to create a **full-stack application** in within **one week**.
+
+Workbench is a schedule management app aimed at designers or students managing their on-going projects. Different users will have a clean board to themselves to start with and they will be able to add and update notes or to-do lists. The platform enables users to track their work flow online. 
 
 Visit the site here - [Workbench](https://project-4-workbench.herokuapp.com/#/), or you can also find the GitHub repo - [GitHub](https://github.com/Aichi-Chang/project-4)
 
@@ -49,7 +52,17 @@ Visit the site here - [Workbench](https://project-4-workbench.herokuapp.com/#/),
 * Django
 * Heroku
 
+
 ### ✔️ Approach Taken ###
+
+| Time      | Tasks         |
+| ------------- |-------------|
+| **1 day**    |  Ideas research, Team brief, planning project days   |
+| **2  days**     |  Backend Initial set up, UX design first edition  |
+| **2 days**  | Frontend set up, UX design complete      |
+| **1 day**  | Styling and Troubleshooting With Instructor   |
+| **1 day** | Bug fixes, final polish  |
+| **1/2 day** | Deployment     |
 
 ### 🤗 Wins ###
 
