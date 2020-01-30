@@ -61,8 +61,30 @@ Visit the site here - [Workbench](https://project-4-workbench.herokuapp.com/#/),
 | **1 day** | Bug fixing, final polishing  |
 | **1/2 day** | Deployment     |
 
+
+#### Back end
+
+- Set up the project model and todos model, add the user model using JSON Web Token. Build views, serializers, and URLs. Create tables and data with PostgreSQL.
+- Hook the project files up with admin and test on the Django REST framework. Also, test the routes on Insomnia.
+- Add extra features, eg. tags models and serializers. Adjust the views for different end-points.
+- Override the query set so that different users could only access the correct inbox given the various privacy settings.
+- final routes test on Insomnia and seed the database onto Fixtures.
+
+#### Front end
+
+- Get brief and design files from the designer, discuss the features and user interface.
+- Set up the front end instructure. Connect the back end to the Front end. 
+- The style of the project aimed for clean and easy to use.
+- Have inbox and other folders for different purposes. The folders are set up as the tags in the backend. When user create project, they will be able to classfy them. 
+- Use SVG files, to make the images look sharp at any dimension with tiny file sizes.
+- Styling using Tachyons.
+
+
 ### 🤗 Wins ###
 
 ### 🧐 Chanllenges ###
 
 ### 🔮 Potential future features ###
+
+
+I decided to complete this project on my own as I wanted to develop my knowledge of Django and Python as we had only learnt it a week prior to completing the project. I found this aspect quite tough as it showed loop holes in my knowledge but this project helped me develop a better understanding.
