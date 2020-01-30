@@ -68,7 +68,7 @@ Visit the site here - [Workbench](https://project-4-workbench.herokuapp.com/#/),
 
 - Set up the project model and todos model, add the user model using JSON Web Token. Build views, serializers, and URLs. Create tables and data with PostgreSQL.
 - Hook the project files up with admin and test on the Django REST framework. Also, test the routes on Insomnia.
-
+<img src='https://github.com/Aichi-Chang/project-4/blob/master/frontend/src/assets/Screenshot%202020-01-30%20at%201.32.46%20pm.png?raw=true' width='50%'>
 - Add extra features, eg. tags models and serializers. Adjust the views for different end-points.
 - Override the query set so that different users could only access the correct inbox given the various privacy settings.
 - final routes test on Insomnia and seed the database onto Fixtures.
