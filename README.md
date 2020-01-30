@@ -100,7 +100,7 @@ class TodoListView(APIView):
 ```
 - Completed the front end using React Hooks. It makes the code cleaner and easier to understand for other developers.
 - It was a great experience working with a UX designer. It helped me to see our project from a different angle.
-
+<img src='https://github.com/Aichi-Chang/project-4/blob/master/frontend/src/assets/Screenshot%202020-01-30%20at%201.07.14%20pm.png?raw=true'>
 
 ### 🧐 Chanllenges ###
 
