@@ -2,7 +2,7 @@
 
 
 # General Assembly, Software Engineering Immersive
-Project-4 Workbench (solo)
+### Solo project - Workbench ###
 
 The final project of the software engineering immersive course at GA London. The assignment was to create a **full-stack application** in within **one week**.
 
