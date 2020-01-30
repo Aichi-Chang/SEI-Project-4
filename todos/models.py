@@ -31,8 +31,6 @@ class Todo(models.Model):
     owner = models.ForeignKey(User, related_name='todos', on_delete=models.CASCADE)
     project = models.ForeignKey(Project, related_name='todos', on_delete=models.CASCADE, blank=True, null=True)
     created_at = models.DateField(auto_now_add=True)
-    
-
 
     def __str__(self):
         return f'{self.heading}: {self.content}, {self.owner}'

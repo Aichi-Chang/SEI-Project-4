@@ -77,6 +77,7 @@ Visit the site here - [Workbench](https://project-4-workbench.herokuapp.com/#/),
 - Get brief and design files from other team mate, discuss protential features and user interface.
 - Set up the front end instructure. Connect the back end to the Front end. 
 - The style of the project aimed for clean and easy to use.
+
 - Have inbox and other folders for different purposes. The folders are set up as the tags in the backend. When user create project, they will be able to classfy them. 
 - Use SVG files, to make the images look sharp at any dimension with tiny file sizes.
 
@@ -85,8 +86,9 @@ Visit the site here - [Workbench](https://project-4-workbench.herokuapp.com/#/),
 
 - I decided to complete this project on my own as we had only learned Python and Django a week prior to completing the project. It was difficult while completing it, as it showed loopholes in my knowledge but this project also helped me gain a better understanding.
 - Rather than using the front end filter function. I have learned how to override the back end's query set to limit different user's access and successfully applied it to the project. 
-
-```class TodoListView(APIView):
+  
+   ```python
+  class TodoListView(APIView):
 
     permission_classes = (IsAuthenticatedOrReadOnly, )
 
@@ -97,14 +99,60 @@ Visit the site here - [Workbench](https://project-4-workbench.herokuapp.com/#/),
     def get_queryset(self):
         user = self.request.user
         return Todo.objects.filter(owner=user.id)
-```
+    ```
+
 - Completed the front end using React Hooks. It makes the code cleaner and easier to understand for other developers.
 - It was a great experience working with a UX designer. It helped me to see our project from a different angle.
 <img src='https://github.com/Aichi-Chang/project-4/blob/master/frontend/src/assets/Screenshot%202020-01-30%20at%201.07.14%20pm.png?raw=true' width='50%'>
 
+
 ### 🧐 Chanllenges ###
 
 - Add the tags feature halfway on the project, and it was difficult to rewrite the code and try to cover every corner that has got affected by it.
+```python
+class Tag(models.Model):
+    name = models.TextField(max_length=20)
+
+    def __str__(self):
+        return f'{self.name}'
+
+
+class Project(models.Model):
+    title = models.CharField(max_length=50)
+    note = models.TextField()
+    owner = models.ForeignKey(User, related_name='projects', on_delete=models.CASCADE)
+    tags = models.ManyToManyField(Tag, related_name='projects', blank=True)
+    created_at = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.title}: {self.note}, {self.owner}'
+```
+```python
+  class TagSerializer(serializers.ModelSerializer):
+
+      class Meta:
+          model = Tag
+          fields = ('id', 'name', 'projects')
+  
+  class ProjectSerializer(serializers.ModelSerializer): 
+
+    class Meta:
+        model = Project
+        fields = ('id', 'title', 'note', 'tags', 'owner', 'todos', 'created_at')
+        extra_kwargs = {'todos': {'required': False}, 'tags': {'required': False}}
+
+  class PopulatedProjectSerializer(ProjectSerializer): 
+
+    owner = OwnerSerializer() 
+    tags = TagSerializer(many=True)
+    todos = TodoSerializer(many=True)
+
+  class PopulatedTagSerializer(TagSerializer):
+
+    projects = ProjectSerializer(many=True)
+
+```
+
 - Try to learn new features whilst building the project. I spent a lot of time reading through the documentation and other developer's questions on Stack Overflow. It was good practice for me, but couldn't manage to complete them all on time.
 - Outside of the assigned time frame, I have used some extra time for bug fixing. So time management is important.
 

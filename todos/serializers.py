@@ -50,7 +50,6 @@ class PopulatedProjectSerializer(ProjectSerializer): # We use this on comment po
     todos = TodoSerializer(many=True)
 
 
-
 class PopulatedOwnerSerializer(OwnerSerializer):
 
     todos = TodoSerializer(many=True)
