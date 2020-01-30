@@ -1,7 +1,7 @@
 ### ![ga_cog_large_red_rgb](https://cloud.githubusercontent.com/assets/40461/8183776/469f976e-1432-11e5-8199-6ac91363302b.png) General Assembly, Software Engineering Immersive
 
 
-### 🚩 Project-4 - Workbench ###
+### 🚩 Project-4 - Workbench (Solo) ###
 
 The final project of the software engineering immersive course at GA London. The assignment was to create a **full-stack application** in within **one week**. Worked solo as a software engineer along side with a UX designer.
 
