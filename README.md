@@ -52,6 +52,8 @@ Visit the site here - [Workbench](https://project-4-workbench.herokuapp.com/#/),
 
 ### ✔️ Approach Taken ###
 
+#### Project plan
+
 | Time      | Tasks         |
 | ------------- |-------------|
 | **1 day**    |  Ideas research, Team brief, planning project days   |
@@ -72,7 +74,7 @@ Visit the site here - [Workbench](https://project-4-workbench.herokuapp.com/#/),
 
 #### Front end
 
-- Get brief and design files from the designer, discuss the features and user interface.
+- Get brief and design files from other team mate, discuss protential features and user interface.
 - Set up the front end instructure. Connect the back end to the Front end. 
 - The style of the project aimed for clean and easy to use.
 - Have inbox and other folders for different purposes. The folders are set up as the tags in the backend. When user create project, they will be able to classfy them. 
@@ -83,8 +85,22 @@ Visit the site here - [Workbench](https://project-4-workbench.herokuapp.com/#/),
 
 - I decided to complete this project on my own as we had only learned Python and Django a week prior to completing the project. It was difficult while completing it, as it showed loopholes in my knowledge but this project also helped me gain a better understanding.
 - Rather than using the front end filter function. I have learned how to override the back end's query set to limit different user's access and successfully applied it to the project. 
+```
+class TodoListView(APIView):
+
+    permission_classes = (IsAuthenticatedOrReadOnly, )
+
+    def get(self, _request):
+        serialized_todos = PopulatedTodoSerializer(self.get_queryset(), many=True)
+        return Response(serialized_todos.data)
+
+    def get_queryset(self):
+        user = self.request.user
+        return Todo.objects.filter(owner=user.id)
+```
 - Completed the front end using React Hooks. It makes the code cleaner and easier to understand for other developers.
 - It was a great experience working with a UX designer. It helped me to see our project from a different angle.
+
 
 ### 🧐 Chanllenges ###
 
@@ -97,4 +113,4 @@ Visit the site here - [Workbench](https://project-4-workbench.herokuapp.com/#/),
 
 - React Calender
 - React Drag and Drop
-- Link the edit function form the back end to the front end.
+- Link the edit and tick completed function form the back end to the front end. And creat the user interfaces for it.
