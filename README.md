@@ -38,7 +38,6 @@ Visit the site here - [Workbench](https://project-4-workbench.herokuapp.com/#/),
 
 * HTML5
 * CSS3
-* Node
 * JavaScript (ES6)
 * Git
 * GitHub
