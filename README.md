@@ -3,7 +3,7 @@
 
 ### 🚩 Project-4 - Workbench (Solo) ###
 
-The final project of the software engineering immersive course at GA London. The assignment was to create a **full-stack application** in within **one week**. Worked solo as a software engineer along side with a UX designer.
+The final project of the software engineering immersive course at GA London. The assignment was to create a **full-stack application** within **one week**. Worked solo as a software engineer along side with a UX designer.
 
 Workbench is a schedule management app aimed at designers or students managing their on-going projects. Different users will have a clean board to themselves to start with and they will be able to add and update notes or to-do lists. The platform enables users to track their work flow online. 
 
