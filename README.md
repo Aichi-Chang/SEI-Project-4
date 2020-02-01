@@ -1,9 +1,9 @@
 ### ![ga_cog_large_red_rgb](https://cloud.githubusercontent.com/assets/40461/8183776/469f976e-1432-11e5-8199-6ac91363302b.png) General Assembly, Software Engineering Immersive
 
 
-### 🚩 Project-4 - Workbench (Solo) ###
+### 🚩 Project-4 - Workbench ###
 
-The final project of the software engineering immersive course at GA London. The assignment was to create a **full-stack application** within **one week**. Worked solo as a software engineer along side with a UX designer.
+The final project of the software engineering immersive course at GA London. The assignment was to create a **full-stack application** within **one week**. I worked solo as a software engineer along side with a UX designer.
 
 Workbench is a schedule management app aimed at designers or students managing their on-going projects. Different users will have a clean board to themselves to start with and they will be able to add and update notes or to-do lists. The platform enables users to track their work flow online. 
 
