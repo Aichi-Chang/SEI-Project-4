@@ -12,14 +12,14 @@ const Login = (props) => {
     password: ''
   })
   const [errors, setErrors] = useState({
-    errors: {}
+    errors: ''
   })
 
 
   function handleChange(e) {
     e.persist()
     setData(data => ({ ...data, [e.target.name]: e.target.value }))
-    setErrors(err => ({ ...err, [e.target.name]: '' }))
+    setErrors(errors => ({ ...errors, [e.target.name]: '' }))
   }
 
   function handleSubmit(e) {
@@ -31,9 +31,10 @@ const Login = (props) => {
         props.history.push('/inbox')
         window.location.reload()
       })
-      .catch(err => setErrors({ ...errors, errors: err.data }))
+      .catch(err => setErrors(err.response.data))
   }
 
+  console.log(errors)
   
 
 
@@ -48,10 +49,10 @@ const Login = (props) => {
           className="pa2 bg-near-white"
           placeholder="Email"
         />
-        {/* {this.state.errors.email && <small className="help is-danger">
-        {this.state.errors.email}
-      </small>} */}
       </div>
+      {errors.message && <small className='red flex flex-column'>
+        {errors.message}
+      </small>}
 
       <div className="pa2">
         <input
@@ -63,6 +64,9 @@ const Login = (props) => {
           placeholder="Password"
         />
       </div>
+      {errors.message && <small className='red flex flex-column'>
+        {errors.message}
+      </small>}
 
       <div className="pa2 tc">
         <button className="pointer mt4 pa2 nearblack grow br4 ph5 f6">

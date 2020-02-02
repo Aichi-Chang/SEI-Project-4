@@ -204,3 +204,7 @@ input {
   right: -190px;
   top: 0;
 }
+
+.register-form {
+  max-width: 380px;
+}

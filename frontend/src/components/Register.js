@@ -34,17 +34,17 @@ const Register = (props) => {
     axios.post('/api/register/', data)
       .then(() => {
         // console.log(res.data)
-        // if (errors.errors === '')
-        props.history.push('/login')
+        if (errors.errors === '')
+          props.history.push('/login')
       }) 
-      .catch(err =>setErrors({ ...errors, errors: err.response.data }))
+      .catch(err =>setErrors(err.response.data))
   }
   
 
-
+  console.log(errors)
 
   return <div className="flex flex-column items-center justify-center vh-100">
-    <form onSubmit={(e) => handleSubmit(e)}>
+    <form onSubmit={(e) => handleSubmit(e)} className='register-form'>
       <div className="pa2 mt4">
         <input
           onChange={(e) => handleChange(e)}
@@ -55,6 +55,9 @@ const Register = (props) => {
           placeholder="Email"
         />
       </div>
+      {errors.message && <small className='red flex flex-column'>
+        {errors.message.email}
+      </small>}
 
       <div className="pa2 ">
         <input
@@ -66,8 +69,11 @@ const Register = (props) => {
           placeholder="User Name"
         />
       </div>
+      {errors.message && <small className='red flex flex-column'>
+        {errors.message.username}
+      </small>}
 
-      <div className="pa2 ">
+      <div className="pa2">
         <input
           onChange={(e) => handleChange(e)}
           type="password"
@@ -76,11 +82,10 @@ const Register = (props) => {
           className="input pa2"
           placeholder="Password"
         />
-        {/* this is not working... */}
-        {errors.password && <small className="red">
-          {errors.password}
-        </small>}
       </div>
+      {errors.message && <small className='red flex flex-column'>
+        {errors.message.password}
+      </small>}
 
       <div className="pa2 ">
         <input
@@ -92,6 +97,9 @@ const Register = (props) => {
           placeholder="Confirm Password"
         />
       </div>
+      {errors.message && <small className='red flex flex-column'>
+        {errors.message.password_confirmation}
+      </small>}
 
       <div className="pa2 tc">
         <button className="pointer mt4 pa2 nearblack grow br4 ph5 f6">
