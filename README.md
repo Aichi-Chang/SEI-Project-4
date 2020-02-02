@@ -83,6 +83,7 @@ Visit the site here - [Workbench](https://project-4-workbench.herokuapp.com/#/),
 - Set up the front end instructure. Connect the back end to the Front end. 
 - The style of the project aimed for clean and easy to use.
 <img src='https://github.com/Aichi-Chang/project-4/blob/master/frontend/src/assets/Screenshot%202020-01-30%20at%201.22.19%20pm.png?raw=true' width='50%'>
+
 - Have inbox and other folders for different purposes. The folders are set up as the tags in the backend. When user create project, they will be able to classfy them. 
 - Use SVG files, to make the images look sharp at any dimension with tiny file sizes.
 
