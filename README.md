@@ -1,4 +1,4 @@
-### ![ga_cog_large_red_rgb](https://cloud.githubusercontent.com/assets/40461/8183776/469f976e-1432-11e5-8199-6ac91363302b.png) General Assembly, Software Engineering Immersive
+### ![ga_cog_large_red_rgb](https://cloud.githubusercontent.com/assets/40461/8183776/469f976e-1432-11e5-8199-6ac91363302b.png)
 
 
 ### 🚩 Project-4 - Workbench ###
@@ -7,7 +7,7 @@ The final project of the software engineering immersive course at GA London. The
 
 Workbench is a schedule management app aimed at designers or students managing their on-going projects. Different users will have a clean board to themselves to start with and they will be able to add and update notes or to-do lists. The platform enables users to track their work flow online. 
 
-Visit the site here - [Workbench](https://project-4-workbench.herokuapp.com/#/), or you can also find the GitHub repo - [GitHub](https://github.com/Aichi-Chang/project-4)
+Visit the site here - [Workbench](https://project-4-workbench.herokuapp.com/#/), or you can also find the GitHub repo - [GitHub](https://github.com/Aichi-Chang/SEI-Project-4)
 
 #### Preview
 ![ezgif com-video-to-gif](https://media.giphy.com/media/LqCbGm2Yy7HprB4Niu/giphy.gif)

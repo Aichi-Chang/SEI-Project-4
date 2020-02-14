@@ -17,7 +17,7 @@
   "model": "todos.tag",
   "pk": 3,
   "fields": {
-    "name": "Archive"
+    "name": "Delayed"
   }
 }
 ]

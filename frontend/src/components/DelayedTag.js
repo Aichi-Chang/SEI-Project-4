@@ -7,7 +7,7 @@ import Auth from '../lib/Auth'
 
 
 
-const ArchiveTag = () => {
+const DelayedTag = () => {
   const [data, setData] = useState([])
   const [newdata, setNewData] = useState([])
 
@@ -19,8 +19,8 @@ const ArchiveTag = () => {
         const data2 = res.data
         setData(res.data)
         const newData = data2.filter((ele)=> {
-          if (!ele.tags[0] || ele.tags[0].name !== 'Archive') return null
-          else return ele.tags[0].name === 'Archive'
+          if (!ele.tags[0] || ele.tags[0].name !== 'Delayed') return null
+          else return ele.tags[0].name === 'Delayed'
         })
         setNewData(newData)
       })
@@ -42,4 +42,4 @@ const ArchiveTag = () => {
   </div>
 }
 
-export default ArchiveTag
+export default DelayedTag

@@ -34,8 +34,8 @@ const Register = (props) => {
     axios.post('/api/register/', data)
       .then(() => {
         // console.log(res.data)
-        if (errors.errors === '')
-          props.history.push('/login')
+        // if (errors.errors === '')
+        props.history.push('/login')
       }) 
       .catch(err =>setErrors(err.response.data))
   }

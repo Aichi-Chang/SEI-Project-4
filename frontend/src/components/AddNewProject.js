@@ -84,8 +84,7 @@ const AddNewProject = (props) => {
             name='tags'
             onChange={(e) => handleChangeTags(e)}  
           >
-            <option disabled>select a tag</option>
-            <option value=''>None</option>
+            <option value=''>Select a Tag</option>
             <option value={tags[0].id}>{tags[0].name}</option>
             <option value={tags[1].id}>{tags[1].name}</option>
             <option value={tags[2].id}>{tags[2].name}</option>

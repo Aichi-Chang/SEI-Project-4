@@ -8,17 +8,16 @@ import 'tachyons'
 
 import Calendar from './components/Calendar'
 import AddTodo from './components/AddTodo'
-import ArchiveTag from './components/ArchiveTag'
+import DelayedTag from './components/DelayedTag'
 import ImportantTag from './components/ImportantTag'
 import TodayTag from './components/TodayTag'
 import SingleProject from './components/SingleProject'
 import AddNewProject from './components/AddNewProject'
 import Login from './components/Login'
 import Register from './components/Register'
-import Home from './components/Home'
+import Home2 from './components/Home2'
 import Header from './components/Header'
 import Auth from './lib/Auth'
-
 
 
 
@@ -36,14 +35,14 @@ const App = () => {
 
       <Switch>
         <Route exact path = '/calendar' component={Calendar} />
-        <Route exact path = '/inbox' component={Home} />
+        <Route exact path = '/inbox' component={Home2} />
         <Route exact path = '/add-todo' component={AddTodo} />       
         <Route exact path = '/login' component={Login} />
         <Route exact path = '/add-new-project' component={AddNewProject} />
         <Route exact path = '/single-project/:id' component={SingleProject} />
         <Route exact path = '/today' component={TodayTag} />
         <Route exact path = '/important' component={ImportantTag} />
-        <Route exact path = '/archive' component={ArchiveTag} />
+        <Route exact path = '/delayed' component={DelayedTag} />
         <Route exact path = '/' component={Register} />
       </Switch>
 

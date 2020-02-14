@@ -75,7 +75,7 @@ const Header = () => {
             </Link>
           </div>
           <div className='grow'>
-            <Link to='/archive' className='folder4 no-underline .tracked flex flex-wrap relative'>
+            <Link to='/delayed' className='folder4 no-underline .tracked flex flex-wrap relative'>
               {tags[2].name}
               <div className='absolute right-1'>
                 {tags[2].projects.filter(ele => ele.owner === Auth.getUser().id).length}
