@@ -86,12 +86,40 @@ Visit the site here - [Workbench](https://project-4-workbench.herokuapp.com/#/),
 <img src='https://github.com/Aichi-Chang/project-4/blob/master/frontend/src/assets/Screenshot%202020-01-30%20at%201.22.19%20pm.png?raw=true' width='50%'>
 
 - Have inbox and other folders for different purposes. The folders are set up as the tags in the backend. When user create project, they will be able to classfy them. 
-- Use SVG files, to make the images look sharp at any dimension with tiny file sizes.
+- I have added React Drag and Drop feature, easy for users to sort their projects' order.
 
 
 ### 🤗 Wins ###
 
 - I decided to complete this project on my own as we had only learned Python and Django a week prior to completing the project. It was difficult while completing it, as it showed loopholes in my knowledge but this project also helped me gain a better understanding.
+- Added React Drap and Drop, I have used ReactDnD as a library for this feature. It was a challenge for me to go through the documentation, find the most suitable function and apply it to my application. The next step I would like to extend this functionality to drag and drop projects into folders which this will direct edit the data in the back-end.
+
+```js
+ const moveCard = (dragIndex, hoverIndex) => {
+    const dragCard = data[dragIndex]
+    setData(
+      update(data, {
+        $splice: [
+          [dragIndex, 1],
+          [hoverIndex, 0, dragCard]
+        ]
+      })
+    )
+  }
+```
+
+```js
+{data.map((projects, i) => {
+  return <Card 
+    key={projects.id} 
+    index={i} 
+    className='project pa3 flex items-center justify-center grow' 
+    moveCard={moveCard} 
+    title={projects.title}
+    url={`/single-project/${projects.id}`}
+  />
+```
+
 - Rather than using the front end filter function. I have learned how to override the back end's query set to limit different user's access and successfully applied it to the project. 
   
    ```python
@@ -107,8 +135,6 @@ Visit the site here - [Workbench](https://project-4-workbench.herokuapp.com/#/),
         user = self.request.user
         return Todo.objects.filter(owner=user.id)
     ```
-
-- Completed the front end using React Hooks. It makes the code cleaner and easier to understand for other developers.
 - It was a great experience working with a UX designer. It helped me to see our project from a different angle.
 <img src='https://github.com/Aichi-Chang/project-4/blob/master/frontend/src/assets/Screenshot%202020-01-30%20at%201.07.14%20pm.png?raw=true' width='50%'>
 
@@ -160,7 +186,7 @@ class Project(models.Model):
 
 ```
 
-- Try to learn new features whilst building the project. I spent a lot of time reading through the documentation and other developer's questions on Stack Overflow. It was good practice for me, but couldn't manage to complete them all on time.
+- Try to learn new features whilst building the project. I spent a lot of time reading through the documentation and other developer's questions on Github and Stack Overflow. It is hard but a good practice for me to grow as a developer!
 - Outside of the assigned time frame, I have used some extra time for bug fixing. So time management is important.
 
 
