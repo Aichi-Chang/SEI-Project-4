@@ -9,8 +9,9 @@ Workbench is a schedule management app aimed at designers or students managing t
 
 Visit the site here - [Workbench](https://project-4-workbench.herokuapp.com/#/), or you can also find the GitHub repo - [GitHub](https://github.com/Aichi-Chang/SEI-Project-4)
 
+
 #### Preview
-![ezgif com-video-to-gif](https://media.giphy.com/media/LqCbGm2Yy7HprB4Niu/giphy.gif)
+![ezgif com-video-to-gif](https://media.giphy.com/media/RM5wellDBMBzW6ITEC/giphy.gif)
 
 
 
@@ -166,5 +167,5 @@ class Project(models.Model):
 ### 🔮 Potential future features ###
 
 - React Calender
-- React Drag and Drop
+- Google account sign up and login
 - Link the edit and tick completed function form the back end to the front end. And creat the user interfaces for it.
