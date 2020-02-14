@@ -92,7 +92,7 @@ Visit the site here - [Workbench](https://project-4-workbench.herokuapp.com/#/),
 ### 🤗 Wins ###
 
 - I decided to complete this project on my own as we had only learned Python and Django a week prior to completing the project. It was difficult while completing it, as it showed loopholes in my knowledge but this project also helped me gain a better understanding.
-- Added React Drap and Drop, I have used ReactDnD as a library for this feature. It was a challenge for me to go through the documentation, find the most suitable function and apply it to my application. The next step I would like to extend this functionality to drag and drop projects into folders which this will direct edit the data in the back-end.
+- Added React Drap and Drop, I have used ReactDnD as a library for this feature. It was a challenge for me to go through the documentation, find the most suitable function and apply it to my application. The next step I would like to extend this functionality to drag and drop projects into folders which will direct edit the data in the back-end.
 
 ```js
  const moveCard = (dragIndex, hoverIndex) => {
