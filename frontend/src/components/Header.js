@@ -36,10 +36,10 @@ const Header = () => {
 
   return (
     <div className='w-100 fixed flex items-center justify-center bg-white'>
-      {Auth.isAuthenticated() && <Link to='/calendar' className='fixed top-2 left-2 .no-underline near-black grow pointer'>
+      {Auth.isAuthenticated() && <Link to='/calendar' className='fixed top-1 left-2 .no-underline near-black grow pointer'>
         <Calander />  
       </Link>}
-      {Auth.isAuthenticated() && <a href='/' className='fixed top-2 right-2 .no-underline near-black pointer grow' onClick={(e)=>handleLogout(e)}>
+      {Auth.isAuthenticated() && <a href='/' className='fixed top-1 right-2 .no-underline near-black pointer grow' onClick={(e)=>handleLogout(e)}>
         <LogoutIcon />
       </a>}
       <div className='fixed top-2'>
