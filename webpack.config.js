@@ -25,7 +25,7 @@ module.exports = {
     contentBase: 'src',
     hot: true,
     open: true,
-    port: 8000,
+    port: 3000,
     watchContentBase: true,
     historyApiFallback: true,
     proxy: {

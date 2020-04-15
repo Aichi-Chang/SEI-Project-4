@@ -6,7 +6,7 @@ import { HashRouter, Switch, Route } from 'react-router-dom'
 import './css/main.css'
 import 'tachyons'
 
-import Calendar from './components/Calendar'
+import CalendarPage from './components/CalendarPage'
 import AddTodo from './components/AddTodo'
 import DelayedTag from './components/DelayedTag'
 import ImportantTag from './components/ImportantTag'
@@ -31,10 +31,10 @@ const App = () => {
     </div>
 
     <HashRouter>
-      {Auth.isAuthenticated && <Header />}
+      {/* {Auth.isAuthenticated && <Header />} */}
 
       <Switch>
-        <Route exact path = '/calendar' component={Calendar} />
+        <Route exact path = '/calendar' component={CalendarPage} />
         <Route exact path = '/inbox' component={Home2} />
         <Route exact path = '/add-todo' component={AddTodo} />       
         <Route exact path = '/login' component={Login} />
