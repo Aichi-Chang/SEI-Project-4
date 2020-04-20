@@ -192,6 +192,6 @@ class Project(models.Model):
 
 ### 🔮 Potential future features ###
 
-- React Calender
+- React Calender 
 - Google account sign up and login
 - Link the edit and tick completed function form the back end to the front end. And creat the user interfaces for it.
