@@ -21,7 +21,7 @@ class TagSerializer(serializers.ModelSerializer):
 
 
 class TodoSerializer(serializers.ModelSerializer):
-
+    created_at = serializers.DateTimeField(read_only=True, format="%d/%m/%Y")
     # created_at = serializers.DateTimeField(format='%Y-%m-%d %H:%M')
 
     class Meta:
@@ -36,6 +36,7 @@ class PopulatedTodoSerializer(TodoSerializer):
 
 
 class ProjectSerializer(serializers.ModelSerializer): # This comment serializer does the same for comments on a post, serializes and populates them, if we didnt do tbhis we would just see a list of comment IDs returned on a post, instead of the full objects in a list.
+    created_at = serializers.DateTimeField(read_only=True, format="%d/%m/%Y")
 
     class Meta:
         model = Project
