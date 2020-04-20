@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { DatePicker } from '@material-ui/pickers'
-import { createMuiTheme } from '@material-ui/core'
+import { createMuiTheme, Badge } from '@material-ui/core'
 import { ThemeProvider } from '@material-ui/styles'
 
 import axios from 'axios'
@@ -67,6 +67,7 @@ export default function Picker({ updateDate }) {
   })
 
   const selected = {
+    textDecoration: 'none',
     backgroundColor: 'red',
     borderRadius: '50%',
     width: '36px',
@@ -88,11 +89,15 @@ export default function Picker({ updateDate }) {
           value={selectedDates} 
           onChange={(e) => handleChange(e)}
           renderDay={(date, selectedDate, isIncurrentMonth, dayComponent) => {
+            console.log(dayComponent)
             const days = selectedDays.map(info => {
               return info.created_at
             })
+            const id = selectedDays.map(id => {
+              return id.id
+            })
             const isSelected = isIncurrentMonth && days.includes(date.toLocaleDateString())
-            return <div style={isSelected ? selected : undefined}>{dayComponent}</div>
+            return <Badge color={isSelected ? 'secondary' : undefined} variant='dot' overlap="circle" ><a href={isSelected ? '/#/inbox' : null}>{dayComponent}</a></Badge>
           }}
         />
       </ThemeProvider>

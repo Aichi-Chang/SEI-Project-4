@@ -28,7 +28,7 @@ const Header = () => {
   },[])
 
   if (!tags) return null
-  console.log(tags)
+  // console.log(tags)
 
   // console.log(tags[0].projects.filter(e => e.owner === 1).length)
 

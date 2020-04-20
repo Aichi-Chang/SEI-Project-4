@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 
 import Auth from '../lib/Auth'
+import Header from './Header'
 // import Tags from './Tags'
 // import Calander from './svgs/Calander'
 // import LogoutIcon from './svgs/LogoutIcon'
@@ -45,6 +46,7 @@ const Today = () => {
 
 
   return <div>
+    <Header />
     <div className='flex items-center justify-center'>
       {Auth.isAuthenticated() && <div className='main-home flex justify-center fixed'>
         <div className='flex flex-column-reverse items-center justify-center'>

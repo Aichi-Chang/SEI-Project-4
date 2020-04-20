@@ -23,7 +23,7 @@ const Home = () => {
   
 
   if (!data) return null 
-  console.log(data)
+  // console.log(data)
 
   const moveCard = (dragIndex, hoverIndex) => {
     const dragCard = data[dragIndex]
