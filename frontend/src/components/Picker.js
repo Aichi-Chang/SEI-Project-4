@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
 import { DatePicker } from '@material-ui/pickers'
-import { createMuiTheme, Badge } from '@material-ui/core'
+import { createMuiTheme } from '@material-ui/core'
 import { ThemeProvider } from '@material-ui/styles'
 
 import axios from 'axios'
