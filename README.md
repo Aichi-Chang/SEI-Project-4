@@ -193,6 +193,7 @@ class Project(models.Model):
 ### 🔮 Potential future features ###
 
 - React Calender 
-I've been working on the Calendar feature, and now users will be able to see 
+I've been working on the Calendar feature, and now users will be able to see how many projects they have on the calendar. by clicking the projects on the calendar, users will be directed back to the project inbox page.
+<img src='https://github.com/Aichi-Chang/SEI-Project-4/blob/master/frontend/src/assets/Screenshot%202020-04-21%20at%2013.55.48.png?raw=true' width='50%'>
 - Google account sign up and login
 - Link the edit and tick completed function form the back end to the front end. And creat the user interfaces for it.
