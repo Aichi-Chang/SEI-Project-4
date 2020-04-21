@@ -193,5 +193,6 @@ class Project(models.Model):
 ### 🔮 Potential future features ###
 
 - React Calender 
+I've been working on the Calendar feature, and now users will be able to see 
 - Google account sign up and login
 - Link the edit and tick completed function form the back end to the front end. And creat the user interfaces for it.

@@ -66,13 +66,16 @@ export default function Picker({ updateDate }) {
     }
   })
 
-  const selected = {
-    textDecoration: 'none',
-    backgroundColor: 'red',
-    borderRadius: '50%',
-    width: '36px',
-    height: '36px'
-  }
+
+
+  // const todayArray = selectedDays.map(date => {
+  //   if (date.created_at === today.toLocaleDateString()) {
+  //     return date.created_at.length
+  //   }
+  // })
+
+  // console.log(todayArray)
+
 
 
 
@@ -89,15 +92,16 @@ export default function Picker({ updateDate }) {
           value={selectedDates} 
           onChange={(e) => handleChange(e)}
           renderDay={(date, selectedDate, isIncurrentMonth, dayComponent) => {
-            console.log(dayComponent)
             const days = selectedDays.map(info => {
               return info.created_at
             })
-            const id = selectedDays.map(id => {
-              return id.id
-            })
             const isSelected = isIncurrentMonth && days.includes(date.toLocaleDateString())
-            return <Badge color={isSelected ? 'secondary' : undefined} variant='dot' overlap="circle" ><a href={isSelected ? '/#/inbox' : null}>{dayComponent}</a></Badge>
+            const length = days.map(today => {
+              return today === date.toLocaleDateString()
+            }).filter(trues => {
+              return trues === true
+            }).length
+            return <Badge color={isSelected ? 'secondary' : undefined} overlap="circle" badgeContent={isSelected ? length : undefined} ><a href={isSelected ? '/#/inbox' : null}>{dayComponent}</a></Badge>
           }}
         />
       </ThemeProvider>
